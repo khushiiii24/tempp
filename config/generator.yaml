@@ -1,0 +1,153 @@
+# The synthetic world. This file decides what the agent is graded against, so every
+# number here is an explicit, arguable assumption rather than a buried constant.
+#
+# Generation is TRUTH-FIRST: we choose the reason code and its validity, then derive the
+# amount from it, then derive the supporting fixtures from it, then derive the observable
+# mess from it. A 26AS row exists BECAUSE the deduction was valid — never the reverse.
+
+batch:
+  n_invoices: 400
+  n_buyers: 40
+  deduction_rate: 0.65          # ~260 of 400 invoices carry at least one deduction
+  start_date: "2026-04-06"      # FY start-ish; a Monday
+  invoice_span_days: 60
+  multi_component_rate: 0.18    # share of deducting invoices with 2+ distinct deductions
+
+# Share of DEDUCTIONS (not invoices) by true reason code. Must sum to 1.0.
+# The TDS block is deliberately the majority: a naive agent's single biggest failure mode
+# is chasing statutory withholding, and this mix is what exposes it.
+mix:
+  TDS_194C: 0.14
+  TDS_194J: 0.09
+  TDS_194H: 0.04
+  TDS_194Q: 0.05
+  GST_TDS: 0.03
+  TDS_RATE_MISMATCH: 0.05
+  TCS_194Q_OVERLAP: 0.03
+  FREIGHT: 0.12
+  SCHEME_REBATE: 0.10
+  CREDIT_NOTE_OFFSET: 0.08
+  DAMAGE_SHORTAGE: 0.04
+  QUALITY_REJECTION: 0.02
+  DEBIT_NOTE_BUYER: 0.01
+  RATE_DIFFERENCE: 0.05
+  UNEARNED_DISCOUNT: 0.05
+  UNEXPLAINED: 0.05
+  DUPLICATE_CLAIM: 0.03
+  BANK_CHARGES: 0.015
+  ROUNDING: 0.005
+
+# For codes whose validity is not fixed by the taxonomy, the share that is VALID.
+validity_split:
+  FREIGHT: 0.50               # half the buyers are on FOR-destination and entitled
+  SCHEME_REBATE: 0.50         # half expired or slab-unmet
+  CREDIT_NOTE_OFFSET: 0.78    # most reference a real unapplied CN
+  DAMAGE_SHORTAGE: 0.65
+  QUALITY_REJECTION: 0.60
+  DEBIT_NOTE_BUYER: 0.50
+  DUPLICATE_CLAIM: 0.25       # usually the buyer is wrong
+
+fixtures:
+  # 26AS lags by a quarter. A valid TDS deduction that is not yet visible must be
+  # PROVISIONALLY CLOSED, not chased. Metrics reward that behaviour explicitly.
+  form_26as_lag_rate: 0.15
+  gstr7_lag_rate: 0.10
+
+messiness:
+  advice_absent_rate: 0.25          # no remittance advice at all
+  advice_late_rate: 0.30            # arrives 2-9 days after the credit
+  advice_late_days: [2, 9]
+  advice_format_weights:            # of the advices that do arrive
+    email: 0.45
+    pdf_text: 0.30                  # broken columns, run-together numbers
+    xlsx: 0.25                      # merged headers, stray blank rows
+  bundled_payment_rate: 0.30        # one UTR covering 3-7 invoices
+  bundle_size: [3, 7]
+  split_payment_rate: 0.08          # one invoice paid across two UTRs, weeks apart
+  split_gap_days: [9, 24]
+  invoice_ref_mangle_rate: 0.55     # narration mangling in the bank statement
+  hinglish_reason_rate: 0.45        # telegraphic AP-speak instead of clean labels
+  off_by_a_rupee_rate: 0.12         # buyer's own stated arithmetic is slightly wrong
+  contradicting_reason_rate: 0.08   # stated reason contradicts the actual arithmetic
+  stated_reason_absent_rate: 0.20   # advice exists but the reason column is blank
+
+# Counterparty behaviour, conditioned on the buyer's payment_behaviour_tag.
+# These decide the ceiling on recoverable money BEFORE the agent runs.
+behaviour:
+  # P(pays if chased correctly) for a deduction that is genuinely invalid.
+  will_pay_if_chased:
+    prompt: 0.85
+    average: 0.62
+    slow: 0.45
+    difficult: 0.28
+  pays_after_n_contacts_weights:    # index 0 -> 1 contact, ... index 3 -> 4 contacts
+    prompt: [0.55, 0.30, 0.12, 0.03]
+    average: [0.30, 0.35, 0.25, 0.10]
+    slow: [0.12, 0.28, 0.35, 0.25]
+    difficult: [0.05, 0.15, 0.35, 0.45]
+  responds_only_at_role_weights:
+    ap_clerk: 0.45
+    ap_manager: 0.35
+    procurement: 0.15
+    account_manager: 0.05
+  will_dispute_rate: 0.07           # raises a formal dispute; agent must stop at once
+  promise_then_default_rate: 0.12
+  latency_days: [2, 11]
+  opt_out_rate: 0.03
+
+buyers:
+  segment_weights: {enterprise: 0.25, midmarket: 0.40, sme: 0.35}
+  behaviour_weights: {prompt: 0.25, average: 0.40, slow: 0.25, difficult: 0.10}
+  # Relationship value drives stop_if_relationship_value_ratio_exceeds. Enterprise
+  # accounts are worth so much that chasing small change from them is value-destroying.
+  relationship_value_paise:
+    enterprise: [800000000, 4000000000]     # Rs 80L - Rs 4Cr
+    midmarket:  [80000000, 600000000]
+    sme:        [5000000, 90000000]
+  consent_whatsapp_rate: 0.55
+  dnd_rate: 0.08
+  for_destination_rate: 0.45        # share of contracts where the SELLER bears freight
+  tcs_applicable_rate: 0.30
+  early_discount_rate: 0.35         # share of contracts offering an early-payment discount
+
+# Scenarios that MUST appear in every batch, at pinned invoice numbers, so the demo
+# script never depends on the RNG being kind. Each forces one truth record.
+showcase:
+  - id: SHOW-CONTRADICT
+    reason: TDS_RATE_MISMATCH
+    note: "Buyer's advice SAYS 'TDS 194C @ 2%' and the arithmetic is 5%. The headline demo."
+    stated_rate_bp: 200
+    actual_rate_bp: 500
+    # Must clear write_off_threshold comfortably, or the correct agent behaviour is to
+    # ignore it and the demo would be showing a case the policy engine discards.
+    min_deduction_paise: 500000       # Rs 5,000 of recoverable excess
+  - id: SHOW-TCS-OVERLAP
+    reason: TCS_194Q_OVERLAP
+    note: "Seller charged TCS 206C(1H); buyer deducted 194Q 0.1% anyway."
+    # 0.1% is a thin rate, so this needs a large invoice to be worth anything at all —
+    # which is also exactly when 194Q legitimately applies.
+    min_deduction_paise: 300000       # Rs 3,000
+  - id: SHOW-RELATIONSHIP-STOP
+    reason: UNEXPLAINED
+    note: "Rs ~1,200 short paid by a Rs 3Cr enterprise account. Agent must STOP and name the rule."
+    force_segment: enterprise
+    force_amount_paise: 120000
+  - id: SHOW-CREDIT-HOLD
+    reason: SCHEME_REBATE
+    valid: false
+    note: "Large expired scheme claim from a difficult buyer that ladders to propose_credit_hold."
+    force_amount_paise: 4200000
+    force_behaviour: difficult
+  - id: SHOW-26AS-LAG
+    reason: TDS_194J
+    valid: true
+    note: "Valid 194J that is NOT yet in 26AS. Correct answer is provisional close, not chase."
+    force_26as_absent: true
+  - id: SHOW-SELF-FAULT
+    reason: RATE_DIFFERENCE
+    note: "Seller billed above the contracted rate. Must self-issue a credit note, never chase."
+  - id: SHOW-HUMAN-QUEUE
+    reason: DAMAGE_SHORTAGE
+    valid: false
+    note: "Rs 1.8L disputed damage claim — above human_review_threshold, routes to a human."
+    force_amount_paise: 18000000

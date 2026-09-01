@@ -1,0 +1,74 @@
+# The ONLY file in this repo that may name a provider or a model.
+# tests/test_no_hardcoded_models.py greps the source tree and fails the build if a
+# provider or model string appears anywhere else.
+#
+# Why local-first: the entire batch runs on a laptop with no API spend, and once the
+# cache is committed the scoreboard reproduces on a machine with no model installed at
+# all. Determinism and zero cost are the same decision here.
+
+provider: ollama
+
+ollama:
+  host: http://localhost:11434
+  # PROVISIONAL until docs/MODEL_SELECTION.md is filled in by tests/bench_models.py.
+  # Do not treat this as the chosen model; the benchmark picks the smallest tag that
+  # clears macro-F1 0.72 on a labelled 40-record slice.
+  model: qwen2.5:7b-instruct
+  # Keep the model resident. Beyond avoiding a reload per call, residency is also what
+  # makes output byte-reproducible — see docs/BROKE.md entry 5.
+  keep_alive: 30m
+  num_ctx: 8192            # floor; sized up per call from measured prompt length
+  temperature: 0
+  seed: 42
+  # MEASURED on this machine (i5-13500H, CPU-only), 4 calls each on the real classifier
+  # prompt:
+  #     1 worker  -> 29.6 s/call throughput
+  #     2 workers -> 22.9 s/call throughput   <- 1.29x, so parallelism does pay here
+  # Raise it only with a measurement in hand: these are CPU-bound generations sharing one
+  # machine, and past a small number of slots per-call latency rises faster than
+  # throughput improves.
+  max_workers: 2
+  request_timeout_s: 900   # a cold 8B on CPU can take minutes for a long prompt
+
+# Candidates the benchmark evaluates, smallest first. Existence is VERIFIED against the
+# local registry before any pull — never assume a tag exists.
+# Sizing note for this machine (i5-13500H, 15.7 GB RAM, no discrete GPU):
+#   ~7-9B at Q4_K_M  -> ~5 GB resident, viable
+#   ~12-14B at Q4_K_M -> ~8-9 GB resident, fits but likely too slow for a full batch
+candidates:
+  - tag: qwen2.5:7b-instruct
+    params_b: 7
+    note: "Strong Indic/Hinglish coverage and reliable JSON adherence. First choice to beat."
+  - tag: llama3.1:8b-instruct-q4_K_M
+    params_b: 8
+    note: "Baseline 8B-class instruct."
+  - tag: mistral-nemo:12b
+    params_b: 12
+    note: "12B-class multilingual. Only if an 8B fails the F1 floor and the clock allows."
+
+openai_compat:
+  base_url: null
+  model: null
+  api_key_env: OPENAI_API_KEY
+
+anthropic:
+  model: claude-sonnet-5
+  api_key_env: ANTHROPIC_API_KEY
+
+# Output budgets. Note the measured reality: on this workload PROMPT evaluation is the
+# dominant cost (~1084 prompt tokens vs ~60 generated, ~85s of a ~95s call), not
+# generation. These caps still matter, but the bigger lever was restructuring the
+# classifier prompt so its static preamble comes first and llama.cpp can reuse the KV
+# cache across calls — that alone took throughput from 48.5 to 22.9 s/call.
+per_task_overrides:
+  classify: {max_tokens: 300}
+  parse:    {max_tokens: 400}
+  draft:    {max_tokens: 350}
+  doctor:   {max_tokens: 64}
+
+repair:
+  max_attempts: 2          # after this, abstain. A guessed parse is worse than no parse.
+
+cache:
+  dir: .llm_cache
+  commit_to_git: true

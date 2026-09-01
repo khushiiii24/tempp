@@ -1,0 +1,190 @@
+# The classifier's label space, and the verification routing table.
+#
+# `family`      groups codes that share a verification module.
+# `verifier`    names the module in src/deduction_desk/verify/ that adjudicates this code.
+# `default_valid` is the prior, NOT the verdict. Verification decides the verdict.
+# `chaseable`   is whether an invalid instance of this code is worth an intervention at all.
+#
+# Adding a code here without adding it to the classifier prompt and a verifier will fail
+# tests/test_taxonomy_consistency.py.
+
+codes:
+  TDS_194C:
+    label: "TDS u/s 194C — payments to contractors"
+    family: tds
+    verifier: tds
+    expected_rate_bp: 200            # 2.00%
+    alt_rate_bp: [100]               # 1% for individual/HUF payees
+    default_valid: true
+    chaseable: false
+    default_action: close_valid
+    note: "Statutory. Never chase the principal — claim it as a tax credit."
+
+  TDS_194J:
+    label: "TDS u/s 194J — professional / technical fees"
+    family: tds
+    verifier: tds
+    expected_rate_bp: 1000           # 10%
+    alt_rate_bp: [200]               # 2% for technical services / call centres
+    default_valid: true
+    chaseable: false
+    default_action: close_valid
+
+  TDS_194H:
+    label: "TDS u/s 194H — commission or brokerage"
+    family: tds
+    verifier: tds
+    expected_rate_bp: 500
+    alt_rate_bp: [200]
+    default_valid: true
+    chaseable: false
+    default_action: close_valid
+
+  TDS_194Q:
+    label: "TDS u/s 194Q — purchase of goods above Rs 50L"
+    family: tds
+    verifier: tds
+    expected_rate_bp: 10             # 0.10%
+    alt_rate_bp: []
+    default_valid: true
+    chaseable: false
+    default_action: close_valid
+
+  TDS_RATE_MISMATCH:
+    label: "Deducted at the wrong rate or under the wrong section"
+    family: tds
+    verifier: tds
+    default_valid: false
+    chaseable: true
+    default_action: chase
+    note: "Only the excess over the correct rate is recoverable. Show the computation."
+
+  TCS_194Q_OVERLAP:
+    label: "Buyer deducted 194Q where the seller already charged TCS u/s 206C(1H)"
+    family: tds
+    verifier: tds
+    default_valid: false
+    chaseable: true
+    default_action: chase
+    note: "Both parties think they are responsible. Chase with the legal explanation."
+
+  GST_TDS:
+    label: "GST TDS 2% — government / PSU buyers"
+    family: gst
+    verifier: tds
+    expected_rate_bp: 200
+    alt_rate_bp: []
+    default_valid: true
+    chaseable: false
+    default_action: close_valid
+
+  FREIGHT:
+    label: "Freight / transport recovered by the buyer"
+    family: contract
+    verifier: contract
+    default_valid: null              # depends entirely on delivery terms
+    chaseable: true
+    default_action: verify_then_branch
+    note: "Valid under FOR-destination, invalid under ex-works."
+
+  DAMAGE_SHORTAGE:
+    label: "Goods damaged or short-delivered"
+    family: goods
+    verifier: grn
+    default_valid: null
+    chaseable: true
+    default_action: verify_then_branch
+
+  QUALITY_REJECTION:
+    label: "Material rejected on quality grounds"
+    family: goods
+    verifier: grn
+    default_valid: null
+    chaseable: true
+    default_action: verify_then_branch
+
+  RATE_DIFFERENCE:
+    label: "Billed above the contracted rate"
+    family: contract
+    verifier: contract
+    default_valid: true
+    chaseable: false
+    default_action: issue_credit_note
+    note: "This is the SELLER's error. Self-correct; never chase."
+
+  SCHEME_REBATE:
+    label: "Trade scheme / quarterly purchase scheme claim"
+    family: scheme
+    verifier: scheme
+    default_valid: null
+    chaseable: true
+    default_action: verify_then_branch
+
+  UNEARNED_DISCOUNT:
+    label: "Early-payment discount taken outside the discount window"
+    family: contract
+    verifier: contract
+    default_valid: false
+    chaseable: true
+    default_action: chase
+
+  CREDIT_NOTE_OFFSET:
+    label: "Netted off an existing credit note"
+    family: credit_note
+    verifier: credit_notes
+    default_valid: null
+    chaseable: true
+    default_action: verify_then_branch
+
+  DEBIT_NOTE_BUYER:
+    label: "Buyer-raised debit note"
+    family: goods
+    verifier: grn
+    default_valid: null
+    chaseable: true
+    default_action: request_document
+
+  BANK_CHARGES:
+    label: "NEFT/RTGS or intermediary bank charges"
+    family: deminimis
+    verifier: deminimis
+    default_valid: true
+    chaseable: false
+    default_action: write_off
+
+  ROUNDING:
+    label: "Sub-Rs 10 rounding difference"
+    family: deminimis
+    verifier: deminimis
+    default_valid: true
+    chaseable: false
+    default_action: write_off
+
+  DUPLICATE_CLAIM:
+    label: "Buyer asserts the invoice was already paid"
+    family: duplicate
+    verifier: duplicates
+    default_valid: null
+    chaseable: true
+    default_action: verify_then_branch
+
+  UNEXPLAINED:
+    label: "Short paid with no reason given"
+    family: unexplained
+    verifier: unexplained
+    default_valid: false
+    chaseable: true
+    default_action: request_document
+
+  NEEDS_HUMAN:
+    label: "Classifier abstained"
+    family: abstain
+    verifier: none
+    default_valid: null
+    chaseable: false
+    default_action: route_to_human
+    note: "A first-class outcome, not a failure. Counted separately from wrong answers."
+
+# Codes the classifier is allowed to emit. NEEDS_HUMAN is always permitted.
+# Anything outside this list in an LLM response is a schema violation and is
+# coerced to NEEDS_HUMAN rather than trusted.

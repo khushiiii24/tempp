@@ -1,0 +1,32 @@
+# Phase 7 — Razorpay test-mode integration. OFF by default, and the default is the path
+# every measured number in this project was produced on.
+#
+# Turning this on does not change the scoreboard. Whether a buyer pays was pre-committed
+# by the data generator before the agent ran, and no payment link alters that. What it
+# changes is the *message*: a chase can carry something payable rather than an instruction
+# to raise a bank transfer.
+#
+# Three independent gates must all be open before a link is ever created:
+#
+#   1. `enabled: true` here
+#   2. `drafting.allow_payment_link: true` in policy.yaml   (the compliance policy)
+#   3. RAZORPAY_KEY_ID / RAZORPAY_KEY_SECRET set, and test-mode
+#
+# Any one missing and the null client is used, which cannot make a network call at all.
+# A key that does not begin `rzp_test_` is REFUSED, not warned about — there is no code
+# path in this repository that can move real money, and tests/test_phase7_razorpay.py
+# asserts it rather than leaving it to the reader.
+
+enabled: false
+
+key_id_env: RAZORPAY_KEY_ID
+key_secret_env: RAZORPAY_KEY_SECRET
+
+timeout_s: 15
+
+# What the integration is used for, when it is on.
+uses:
+  payment_link_on_chase: true    # the recovery ask carries a payable link
+  detect_incoming_credit: false  # recoveries come from the counterparty state machine,
+                                 # never from a gateway — see the note in razorpay_client.py
+  refund_on_credit_note: false   # money flowing back out needs a human, not an agent

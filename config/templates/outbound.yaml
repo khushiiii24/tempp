@@ -1,0 +1,121 @@
+# Static outbound templates. These are the FALLBACK when a drafted message fails the
+# validator, and they are also the default for a batch run — a 300-case run at ~50 seconds
+# per generation is four hours of drafting for prose that the validator constrains tightly
+# anyway.
+#
+# Every template is deliberately mild. The escalation in this system comes from the
+# LADDER — who is written to, and how often — not from the language getting harsher. An
+# agent that raises its voice rather than raising the recipient is applying pressure it
+# has no authority to apply.
+#
+# Slots: {buyer_name} {invoice_no} {amount} {deduction_reason} {case_ref} {contact_role}
+#        {section} {days_overdue} {evidence}
+
+chase_1:
+  subject: "Payment query: {invoice_no} — short receipt of {amount}"
+  body: |
+    Dear Sir/Madam,
+
+    We have received your payment against invoice {invoice_no}, for which {amount}
+    appears to remain outstanding.
+
+    Our records do not show a basis for this deduction. Could you please confirm the
+    reason, or arrange for the balance to be released?
+
+    Reference: case {case_ref}
+
+    Thanks and regards,
+    Accounts Receivable
+
+chase_2:
+  subject: "Reminder: {invoice_no} — {amount} outstanding"
+  body: |
+    Dear Sir/Madam,
+
+    Further to our earlier note, {amount} against invoice {invoice_no} remains
+    unresolved. We have not yet received a response.
+
+    We would be grateful if you could confirm the position at your convenience.
+
+    Reference: case {case_ref}
+
+    Thanks and regards,
+    Accounts Receivable
+
+chase_3:
+  subject: "Follow-up: {invoice_no} — {amount}"
+  body: |
+    Dear Sir/Madam,
+
+    We are still awaiting clarification on {amount} deducted from invoice {invoice_no}.
+
+    If there is documentation supporting the deduction, please share it and we will
+    close our query. Otherwise, kindly arrange release of the balance.
+
+    Reference: case {case_ref}
+
+    Thanks and regards,
+    Accounts Receivable
+
+chase_4:
+  subject: "Outstanding balance on {invoice_no} — {amount}"
+  body: |
+    Dear Sir/Madam,
+
+    {amount} against invoice {invoice_no} remains outstanding and we have been unable
+    to establish a basis for the deduction from our records.
+
+    We would appreciate your team's help in resolving this.
+
+    Reference: case {case_ref}
+
+    Thanks and regards,
+    Accounts Receivable
+
+chase_escalated:
+  subject: "Escalation: unresolved deduction on {invoice_no} — {amount}"
+  body: |
+    Dear Sir/Madam,
+
+    We are writing to you as this query has not been resolved at the accounts payable
+    level. {amount} deducted from invoice {invoice_no} remains unexplained against our
+    records.
+
+    We would welcome a short call to close this out.
+
+    Reference: case {case_ref}
+
+    Thanks and regards,
+    Accounts Receivable
+
+request_document:
+  subject: "Document request: {invoice_no}"
+  body: |
+    Dear Sir/Madam,
+
+    To close our query on invoice {invoice_no}, we need a copy of the supporting
+    documentation for the deduction of {amount} ({evidence}).
+
+    Once we have it we can reconcile our records and close the item.
+
+    Reference: case {case_ref}
+
+    Thanks and regards,
+    Accounts Receivable
+
+request_tds_certificate:
+  subject: "TDS certificate request: {invoice_no}"
+  body: |
+    Dear Sir/Madam,
+
+    Our records show tax withheld of {amount} against invoice {invoice_no} under
+    {section}. We are not chasing this amount — it is a statutory deduction and we will
+    claim the credit.
+
+    We would be grateful for the Form 16A certificate for the relevant quarter so that
+    we can complete our reconciliation.
+
+    Reference: case {case_ref}
+
+    Thanks and regards,
+    Accounts Receivable

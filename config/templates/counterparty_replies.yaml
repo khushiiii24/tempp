@@ -1,0 +1,83 @@
+# Simulated buyer replies. Static templates with slot-filling — NO LLM.
+#
+# Two reasons this is not a model call, and the second is the important one.
+#
+# 1. Cost. Reply text would be several hundred extra generations per run on a CPU-only
+#    box, for text that no part of the pipeline reads for meaning.
+#
+# 2. Defensibility. The outcome of every case is pre-committed in `DeductionTruth` before
+#    the agent runs. If a model wrote the replies it would be a short step to a model
+#    *deciding* the replies, and at that point the agent is grading its own homework: a
+#    more persuasive chase email would "recover" more money because something downstream
+#    was persuaded, not because a real buyer was. The state machine picks the outcome;
+#    these templates only dress it.
+#
+# Slots: {invoice_no} {amount} {buyer_name} {contact_name} {promise_date} {case_ref}
+#        {section} {scheme_id} {credit_note_no} {days}
+
+deflection:
+  # Sent when the buyer is not yet ready to pay: contacts_used < pays_after_n_contacts,
+  # or the agent has not yet escalated to the role that actually decides.
+  generic:
+    - "Noted, we will check with the concerned team and revert."
+    - "This is under process at our end. Kindly allow some time."
+    - "We have forwarded to accounts. Will update shortly."
+    - "Pls share the ledger copy, we will reconcile from our side."
+    - "Team is checking. Revert in a few days."
+  junior_role:
+    # The AP clerk genuinely cannot authorise anything; escalation is the only route.
+    - "Sir, this is beyond my level. Kindly write to our AP manager."
+    - "I only process payments as per the approved sheet. Pls escalate."
+    - "Deduction was approved by management, I cannot reverse it."
+  tds_pushback:
+    - "TDS is deducted as per statute u/s {section}. Certificate will be issued in due course."
+    - "This is statutory deduction, pls claim credit in your return. Nothing payable by us."
+    - "Form 16A for the quarter will be shared after filing."
+  scheme_pushback:
+    - "Scheme claim {scheme_id} was as per the circular shared by your sales team."
+    - "This adjustment is as per the QPS agreed with your RSM."
+  freight_pushback:
+    - "Freight was borne by us as per delivery terms. Recovery is in order."
+    - "Transport was arranged at our end, hence recovered."
+
+promise:
+  # The buyer commits to a date. `promise_then_default` decides whether they honour it —
+  # the template is identical either way, which is the point: a promise is not evidence.
+  - "We will release {amount} against {invoice_no} by {promise_date}."
+  - "Payment for {invoice_no} is scheduled in our run on {promise_date}."
+  - "Approved for payment. Expect credit by {promise_date}."
+  - "Will clear the balance {amount} by {promise_date}, pls bear with us."
+
+payment:
+  # Accompanies an actual credit emitted by the counterparty state machine.
+  - "Payment released today for {amount} against {invoice_no}. Pls acknowledge."
+  - "We have processed {amount}. UTR will follow."
+  - "Balance settled as discussed. Kindly update your books."
+
+dispute:
+  # A hard stop. The agent must cease contact immediately.
+  - "We do not accept this claim. Kindly treat the matter as disputed and route through
+    our commercial team."
+  - "This deduction stands as per our records. We are formally disputing your claim on
+    {invoice_no}."
+  - "Please do not follow up further. The matter is with our legal/commercial team."
+
+opt_out:
+  - "Kindly remove this ID from your follow-up list and route all correspondence through
+    our portal only."
+  - "Please stop sending reminders to this address."
+
+document:
+  # Response to a request_document action.
+  tds_certificate:
+    - "Form 16A for the quarter is attached. Deduction u/s {section} against {invoice_no}."
+    - "TDS certificate will be available after quarterly filing. Pls await."
+  debit_note:
+    - "Copy of our debit note is attached for {invoice_no}."
+    - "DN copy attached. Raised on account of short receipt."
+  grn:
+    - "GRN copy attached showing the shortage recorded at receipt."
+  none:
+    - "We do not have supporting documentation readily available for this."
+
+silence: []   # no reply at all; the most common outcome from a difficult buyer
