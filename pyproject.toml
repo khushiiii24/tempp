@@ -1,0 +1,49 @@
+[project]
+name = "deduction-desk"
+version = "0.1.0"
+description = "An AI agent that recovers revenue lost to B2B short payments and deductions."
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.9",
+    "sqlmodel>=0.0.22",
+    "typer>=0.12",
+    "rich>=13.7",
+    "rapidfuzz>=3.9",
+    "pandas>=2.2",
+    "pyyaml>=6.0",
+    "anthropic>=0.40",
+    "python-dotenv>=1.0",
+]
+# The front end is a separate Vite/React app in `web/` that reads a static snapshot written
+# by `export-web`. It deliberately shares no runtime with the Python: the previous Streamlit
+# dashboard held an open handle on the SQLite file, which made `generate` fail with a
+# PermissionError silently enough to look like non-determinism.
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+deduction-desk = "deduction_desk.cli:app"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501", "B008"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    "slow: full-batch tests that regenerate data",
+    "live_llm: requires a real ANTHROPIC_API_KEY",
+]
