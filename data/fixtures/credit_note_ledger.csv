@@ -1,0 +1,29 @@
+credit_note_no,buyer_id,buyer_name,amount_inr,issued_date,applied,applied_against,reason
+CN/2103,BUY-0014,Sri Fasteners Solutions Pvt Ltd,3005.00,2026-05-03,Y,INV/2026/1103,quality claim settlement
+CN/2467,BUY-0036,Raj Chem Solutions Pvt Ltd,16248.00,2026-04-08,N,,quality claim settlement
+CN/2471,BUY-0037,Vikram Beverages Distributors Pvt Ltd,1668.00,2026-05-15,N,,quality claim settlement
+CN/2538,BUY-0027,Chetak Rubber Udyog Pvt Ltd,708.00,2026-03-31,N,,quality claim settlement
+CN/2846,BUY-0011,Sutlej Auto Solutions Pvt Ltd,1649.00,2026-04-22,N,,quality claim settlement
+CN/2920,BUY-0039,Sutlej Packaging Agencies,38699.00,2026-02-18,N,,quality claim settlement
+CN/3153,BUY-0006,Lakshmi Foods Distributors Pvt Ltd,2056.00,2026-03-22,N,,quality claim settlement
+CN/3175,BUY-0022,Vindhya Electro Trading Co,2736.00,2026-03-07,N,,quality claim settlement
+CN/3282,BUY-0030,Anand Beverages Corporation,839.00,2026-04-05,N,,quality claim settlement
+CN/3463,BUY-0034,Vikram Paper Corporation,11152.00,2026-05-19,Y,INV/2026/4004,quality claim settlement
+CN/3962,BUY-0001,Chetak Packaging Udyog Pvt Ltd,1524.00,2026-05-08,N,,quality claim settlement
+CN/4070,BUY-0007,Nav Agro Distributors Pvt Ltd,3756.00,2026-03-05,N,,quality claim settlement
+CN/4230,BUY-0026,Sri Cement Agencies,11317.00,2026-04-24,N,,quality claim settlement
+CN/4809,BUY-0012,Deccan Rubber Corporation,33357.00,2026-02-18,N,,quality claim settlement
+CN/4998,BUY-0037,Vikram Beverages Distributors Pvt Ltd,4979.00,2026-03-13,N,,quality claim settlement
+CN/5568,BUY-0001,Chetak Packaging Udyog Pvt Ltd,1075.00,2026-05-02,N,,quality claim settlement
+CN/5665,BUY-0022,Vindhya Electro Trading Co,26330.00,2026-03-26,N,,quality claim settlement
+CN/5844,BUY-0023,Hind Steel Impex,57141.00,2026-03-14,N,,quality claim settlement
+CN/5903,BUY-0014,Sri Fasteners Solutions Pvt Ltd,1339.00,2026-03-11,N,,quality claim settlement
+CN/6072,BUY-0021,Malabar Pharma Distributors Pvt Ltd,33862.00,2026-03-19,N,,quality claim settlement
+CN/6497,BUY-0004,Lakshmi Chem Agencies,925.00,2026-03-23,N,,quality claim settlement
+CN/6862,BUY-0004,Lakshmi Chem Agencies,32913.00,2026-04-07,Y,INV/2026/1870,quality claim settlement
+CN/6990,BUY-0019,Anand Bearings Traders,146858.00,2026-04-18,N,,quality claim settlement
+CN/7599,BUY-0023,Hind Steel Impex,1240.00,2026-04-29,N,,quality claim settlement
+CN/8233,BUY-0024,Anand Optics Udyog Pvt Ltd,90372.00,2026-03-29,N,,quality claim settlement
+CN/8429,BUY-0035,Maa Foods Marketing Pvt Ltd,1481.00,2026-05-10,N,,quality claim settlement
+CN/9291,BUY-0020,Coromandel Steel Traders,1715.00,2026-03-09,N,,quality claim settlement
+CN/9631,BUY-0028,Bharat Electro Enterprises,5140.00,2026-05-15,N,,quality claim settlement
