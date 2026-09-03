@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#05060A" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+
+    <title>Recoup — the money that leaves the invoice and never comes back</title>
+    <meta
+      name="description"
+      content="Indian buyers pay invoices net of deductions. Recoup works out which of those deductions you are actually owed back, checking Form 26AS, the credit-note ledger and the contract before it writes to anyone."
+    />
+    <meta
+      name="keywords"
+      content="short payment recovery, B2B receivables India, TDS 194C deduction, remittance advice matching, deduction management, accounts receivable automation, invoice shortfall"
+    />
+    <link rel="canonical" href="https://recoup-ar.vercel.app/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Recoup" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:url" content="https://recoup-ar.vercel.app/" />
+    <meta property="og:title" content="Recoup — every invoice was paid, not every rupee arrived" />
+    <meta
+      property="og:description"
+      content="Rs 1.22 Cr never came back across 400 invoices. About half of it the buyer was entitled to keep. Recoup works out which half, handling 2.3x more of the money than writing to everyone, with a twenty-fourth of the wrong letters."
+    />
+    <meta property="og:image" content="https://recoup-ar.vercel.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="A dark ledger with a stream of gold particles crossing it and splitting three ways."
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Recoup — every invoice was paid, not every rupee arrived" />
+    <meta
+      name="twitter:description"
+      content="An agent that verifies every B2B deduction before chasing it. Results, guardrails and the failure log all published."
+    />
+    <meta name="twitter:image" content="https://recoup-ar.vercel.app/og.png" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      Three families, and the wordmark uses the display one. The mark beside it is SVG; see
+      `src/components/Wordmark.tsx`.
+    -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--
+      Core content for crawlers and for the no-JavaScript case. Both reference briefs call
+      out the same failure: a site that renders as an empty div without scripts. The React
+      root replaces this on mount.
+    -->
+    <div id="root">
+      <noscript>
+        <h1>Recoup</h1>
+        <p>
+          Indian buyers pay invoices net of deductions: tax withheld, rebates claimed, credit notes
+          netted off, shortages docked. Recoup decides which of those you are actually owed back.
+        </p>
+        <p>
+          Across a generated batch of 400 invoices, Rs 1,22,03,318 was short-paid. Rs 47,32,790 of
+          that is genuinely recoverable; Rs 22,49,826 would actually be paid if chased correctly.
+          Recoup handles Rs 21,78,552 of it — 2.3 times what writing to everyone handles — while sending
+          20 letters about legitimate deductions instead of 473.
+        </p>
+        <p>
+          Every deduction is classified by a local model, then verified against Form 26AS, the
+          credit-note ledger, the contract, the scheme master and the goods-receipt log before any
+          contact is made. Compliance is checked twice by two independent implementations, and
+          every case replays from an append-only decision log alone.
+        </p>
+      </noscript>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

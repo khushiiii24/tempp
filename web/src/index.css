@@ -1,0 +1,399 @@
+@import "tailwindcss";
+
+/* ==========================================================================================
+   Recoup — "Ledger & Leak"
+
+   The theme is the design system, not a tagline. Two nouns in tension: the fixed, ruled,
+   double-entry certainty of a ledger, and money quietly escaping it. Every visual decision
+   below traces back to one of those two words:
+
+     ledger  -> ruled lines across the entire page, a row-number gutter beside every heading,
+                tabular monospace numerals, everything snapped to a baseline
+     leak    -> gold particles falling out of the stream in the hero, section seams that
+                bleed downward instead of ending, crimson reserved exclusively for money
+                that left and did not come back
+
+   Colour is load-bearing and consistent everywhere: gold is money in flight, crimson is
+   money lost or a wrong letter sent, jade is money recovered or addressed, slate is money
+   that was legitimately the buyer's, violet is a human being asked to decide. If a chart
+   uses a colour, it means the same thing it means in the hero.
+   ========================================================================================== */
+
+@theme {
+  --color-ink: #05060a;
+  --color-ink-2: #0a0c12;
+  --color-ink-3: #10131b;
+  --color-rule: rgba(233, 230, 222, 0.09);
+  --color-rule-2: rgba(233, 230, 222, 0.16);
+
+  --color-paper: #e9e6de;
+  --color-paper-2: #a2a8b4;
+  --color-paper-3: #6a707c;
+
+  --color-gold: #e8b24c;
+  --color-leak: #e2534a;
+  --color-jade: #47c08a;
+  --color-slate: #6d95bd;
+  --color-violet: #9683f2;
+
+  --font-display: "Bricolage Grotesque", "Archivo", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+:root {
+  color-scheme: dark;
+  --shell: min(1280px, 100% - 3rem);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --shell: calc(100% - 2rem);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+/* ------------------------------------------------------------------------------------------
+   The continuity kit. One texture, one set of rules, running across every section from hero
+   to footer. This is the single thing that makes ten different layouts read as one printed
+   surface — sections change, the paper does not.
+   ------------------------------------------------------------------------------------------ */
+/* Deliberately no `mix-blend-mode`.
+ *
+ * A fixed, full-viewport blend layer composites against its stacking context's backdrop,
+ * which promotes the entire ~15,000px document to a single composited layer. That is a
+ * real cost for a paper grain that a plain low-opacity overlay reproduces almost exactly,
+ * so it is not worth paying.
+ *
+ * It is worth being precise about what this is *not*: it did not cause the black-screen
+ * bug it was blamed for. See BROKE entry 16 — the cause was a starved frame loop, and this
+ * change was a red herring that happened to also be a small improvement. */
+.texture {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+}
+
+.rules {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 31px,
+    rgba(233, 230, 222, 0.028) 31px 32px
+  );
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(5, 6, 10, 0.75) 100%);
+}
+
+/* The gutter: a ledger's row-number column, reused as the ornament that bookends every
+   section heading. Framing is this site's signature gesture and it appears at three scales —
+   the hero framed by its rails, headings framed by the gutter, cards framed by a hairline. */
+.gutter-rule {
+  background: linear-gradient(to right, var(--color-rule-2), transparent);
+}
+
+/* ------------------------------------------------------------------------------------------
+   Section seams. Never a hard edge and never a plain background swap — every boundary is a
+   designed object with its own gradient, the way the reference treats a wave or a vignette
+   as an asset rather than a border.
+   ------------------------------------------------------------------------------------------ */
+.seam {
+  position: relative;
+}
+.seam::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 160px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(5, 6, 10, 0.9), transparent);
+}
+
+.shell {
+  width: var(--shell);
+  margin-inline: auto;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+/* One surface, used for every panel on the page.
+ *
+ * A top-lit gradient plus a hairline that is brighter along the top edge — the way a
+ * physical card catches light from above. It is the single reason a stat tile, a chart
+ * frame and a case record read as the same family of object instead of three unrelated
+ * boxes. */
+.panel {
+  position: relative;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(233, 230, 222, 0.045) 0%, rgba(233, 230, 222, 0.012) 42%),
+    rgba(10, 12, 18, 0.72);
+  border: 1px solid var(--color-rule);
+  box-shadow: inset 0 1px 0 rgba(233, 230, 222, 0.055);
+  backdrop-filter: blur(6px);
+}
+
+.panel-hover {
+  transition:
+    border-color 400ms ease,
+    transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 400ms ease;
+}
+.panel-hover:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--panel-glow, var(--color-gold)) 34%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(233, 230, 222, 0.07),
+    0 18px 44px -24px color-mix(in srgb, var(--panel-glow, var(--color-gold)) 60%, transparent);
+}
+
+/* Kept as an alias so nothing that still says `card` loses its surface. */
+.card {
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(233, 230, 222, 0.04), rgba(233, 230, 222, 0.012));
+  border: 1px solid var(--color-rule);
+}
+
+.hairline {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+/* ------------------------------------------------------------------------------------------
+   Reveal on scroll. Deliberately one shared transition rather than per-component animation,
+   so the page has a single motion vocabulary instead of six competing ones.
+   ------------------------------------------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.ticker-track {
+  animation: ticker 64s linear infinite;
+}
+
+/* ------------------------------------------------------------------------------------------
+   Backdrop motion. Long durations on purpose — a background that reads as moving is a
+   background competing with the text in front of it. These should register as "the page is
+   alive" and never as "something is happening over there".
+   ------------------------------------------------------------------------------------------ */
+@keyframes drift {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(4deg) scale(1.035);
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+  }
+}
+.drift-slow {
+  animation: drift 58s ease-in-out infinite;
+}
+.drift-slow-reverse {
+  animation: drift 74s ease-in-out infinite reverse;
+}
+
+@keyframes streak {
+  from {
+    transform: translateX(-22%);
+    opacity: 0;
+  }
+  12%,
+  84% {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(22%);
+    opacity: 0;
+  }
+}
+.streak {
+  animation: streak 22s linear infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.twinkle {
+  animation: twinkle 7s ease-in-out infinite;
+}
+
+/* Charts draw themselves once, when they scroll into view. A line that is simply *there*
+   reads as a picture; a line that arrives reads as a measurement being taken. */
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.draw-line {
+  stroke-dasharray: var(--len, 3000);
+  stroke-dashoffset: var(--len, 3000);
+  animation: draw-line 1.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.pop-in {
+  animation: pop-in 620ms cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-up {
+  animation: fade-up 700ms ease-out both;
+}
+
+@keyframes unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.unfold {
+  animation: unfold 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+/* Focus is visible and it is gold — the same colour the whole site uses for "this is the
+   thing that matters". Keyboard users get the site's own vocabulary, not a browser default. */
+:where(a, button, input, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: #1c2029;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2f3a;
+}
+
+/* Motion is decoration; information is not. Everything above degrades to a static frame,
+   including the 3D scene, which stops its render loop entirely rather than merely slowing. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
