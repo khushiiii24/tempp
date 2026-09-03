@@ -1,0 +1,31 @@
+{
+  "abstained": false,
+  "key": "889fcdf328f4a19c9bceaf5b88e7ac84a14d6dc5906cd10b4c506012a847dc94",
+  "meta": {
+    "eval_count": 69,
+    "num_ctx": 8192,
+    "prompt_eval_count": 863,
+    "tokens_per_sec": 5.22,
+    "total_duration_s": 48.058,
+    "truncation_risk": false,
+    "wall_s": 50.104
+  },
+  "model": "qwen2.5:7b-instruct",
+  "parsed": {
+    "check": null,
+    "code": "FREIGHT",
+    "confidence": 0.95,
+    "evidence_needed": [],
+    "rationale": "The stated reason 'lorry frt adj' aligns with freight, and the arithmetic matches the contract's freight terms. The deduction is not a TDS rate, and TCS was already applied."
+  },
+  "prompt": "Classify ONE deduction a buyer took against ONE invoice. Return JSON only.\n\n## Reason codes (the full space; each case lists which are POSSIBLE for it)\nBANK_CHARGES\nCREDIT_NOTE_OFFSET = netted an existing credit note\nDAMAGE_SHORTAGE\nDEBIT_NOTE_BUYER = buyer raised their own debit note\nDUPLICATE_CLAIM = 'already paid this invoice'\nFREIGHT\nGST_TDS\nNEEDS_HUMAN = genuinely unsure — abstain\nQUALITY_REJECTION\nRATE_DIFFERENCE = WE billed above the contracted rate (our error)\nROUNDING\nSCHEME_REBATE = trade scheme / QPS claim\nTCS_194Q_OVERLAP = buyer deducted 194Q where we already charged TCS 206C(1H)\nTDS_194C\nTDS_194H\nTDS_194J\nTDS_194Q\nTDS_RATE_MISMATCH = wrong rate or wrong section\nUNEARNED_DISCOUNT = early-payment discount taken late\nUNEXPLAINED = short paid, no reason given\n\n## How to decide\n1. ARITHMETIC BEATS THE STATED REASON. If the buyer writes \"TDS 194C @ 2%\" but the\n   deduction is 5.00% of taxable value, that is TDS_RATE_MISMATCH, not TDS_194C.\n   Put the decisive number in `check`.\n2. Percentage matches a statutory rate AND the contract expects that section\n   -> use the plain section code.\n3. Percentage matches a statutory rate HIGHER than the contract's expected rate\n   -> TDS_RATE_MISMATCH.\n4. Freight is FREIGHT whoever owes it. Whether it is legitimate is decided later against\n   the contract, not by you.\n5. Under Rs 10 -> ROUNDING. Small round transfer fees -> BANK_CHARGES.\n6. No reason stated and the arithmetic matches nothing -> UNEXPLAINED.\n7. Genuinely unsure -> NEEDS_HUMAN with confidence below 0.72. Abstaining is a\n   correct and expected answer, not a failure.\n\n`confidence` is a decimal between 0.0 and 1.0, never a percentage.\nKeep `rationale` under 200 characters and cite the number that decided it.\nDo not restate the invoice.\n\n---\n## Invoice\nINV/2026/0309 | taxable Rs 2,07,657 | total Rs 2,45,280\nissued 2026-05-14, due 2026-07-13\n\n## Contract\ndelivery for_destination (freight borne by seller) |\nexpected TDS TDS_194C at 2.00% |\nwe charge TCS: yes | early-payment discount: none\n\n## Buyer\nMaa Foods Marketing Pvt Ltd (sme) | prior deductions: TDS-like x3, other x1\n\n## The deduction\namount Rs 2,611\nstated reason (VERBATIM, may be wrong): \"lorry frt adj\"\n\n## Arithmetic (computed for you — trust these)\n- deduction is 1.26% of TAXABLE value\n- NO statutory rate matches that percentage (argues against the TDS family unless a wrong rate was applied)\n- WE already charged TCS Rs 245 u/s 206C(1H). If the buyer also deducted 194Q at 0.10%, that is TCS_194Q_OVERLAP.",
+  "prompt_sha256": "69404e689e7982cecea029832e5e19200bf72eb32746ec16e3189471c085a61a",
+  "provider": "ollama",
+  "repairs": [],
+  "response_text": "{\n  \"code\": \"FREIGHT\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The stated reason 'lorry frt adj' aligns with freight, and the arithmetic matches the contract's freight terms. The deduction is not a TDS rate, and TCS was already applied.\"\n}",
+  "schema_hash": "18d94e02cf866388",
+  "schema_name": "Classification",
+  "system": "You are an accounts-receivable analyst in India classifying why a B2B buyer paid less than the invoice amount. You are precise, you cite arithmetic, and you say NEEDS_HUMAN when the evidence genuinely does not decide the answer. Guessing is worse than abstaining: a wrong reason code sends a chase letter to a customer who did nothing wrong.",
+  "task": "classify",
+  "temperature": 0.0
+}

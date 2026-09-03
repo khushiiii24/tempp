@@ -1,0 +1,31 @@
+{
+  "abstained": false,
+  "key": "7f1de651d9febc3ace027f75c973a1bb02f3731a9b02d9708bebc8997dde1009",
+  "meta": {
+    "eval_count": 59,
+    "num_ctx": 8192,
+    "prompt_eval_count": 868,
+    "tokens_per_sec": 6.84,
+    "total_duration_s": 33.447,
+    "truncation_risk": false,
+    "wall_s": 35.481
+  },
+  "model": "qwen2.5:7b-instruct",
+  "parsed": {
+    "check": null,
+    "code": "FREIGHT",
+    "confidence": 0.95,
+    "evidence_needed": [],
+    "rationale": "Freight is borne by the seller according to the contract. The stated reason 'less transport charges' aligns with the freight being a seller's cost."
+  },
+  "prompt": "Classify ONE deduction a buyer took against ONE invoice. Return JSON only.\n\n## Reason codes (the full space; each case lists which are POSSIBLE for it)\nBANK_CHARGES\nCREDIT_NOTE_OFFSET = netted an existing credit note\nDAMAGE_SHORTAGE\nDEBIT_NOTE_BUYER = buyer raised their own debit note\nDUPLICATE_CLAIM = 'already paid this invoice'\nFREIGHT\nGST_TDS\nNEEDS_HUMAN = genuinely unsure — abstain\nQUALITY_REJECTION\nRATE_DIFFERENCE = WE billed above the contracted rate (our error)\nROUNDING\nSCHEME_REBATE = trade scheme / QPS claim\nTCS_194Q_OVERLAP = buyer deducted 194Q where we already charged TCS 206C(1H)\nTDS_194C\nTDS_194H\nTDS_194J\nTDS_194Q\nTDS_RATE_MISMATCH = wrong rate or wrong section\nUNEARNED_DISCOUNT = early-payment discount taken late\nUNEXPLAINED = short paid, no reason given\n\n## How to decide\n1. ARITHMETIC BEATS THE STATED REASON. If the buyer writes \"TDS 194C @ 2%\" but the\n   deduction is 5.00% of taxable value, that is TDS_RATE_MISMATCH, not TDS_194C.\n   Put the decisive number in `check`.\n2. Percentage matches a statutory rate AND the contract expects that section\n   -> use the plain section code.\n3. Percentage matches a statutory rate HIGHER than the contract's expected rate\n   -> TDS_RATE_MISMATCH.\n4. Freight is FREIGHT whoever owes it. Whether it is legitimate is decided later against\n   the contract, not by you.\n5. Under Rs 10 -> ROUNDING. Small round transfer fees -> BANK_CHARGES.\n6. No reason stated and the arithmetic matches nothing -> UNEXPLAINED.\n7. Genuinely unsure -> NEEDS_HUMAN with confidence below 0.72. Abstaining is a\n   correct and expected answer, not a failure.\n\n`confidence` is a decimal between 0.0 and 1.0, never a percentage.\nKeep `rationale` under 200 characters and cite the number that decided it.\nDo not restate the invoice.\n\n---\n## Invoice\nINV/2026/0372 | taxable Rs 28,31,826 | total Rs 33,44,896\nissued 2026-04-27, due 2026-05-12\n\n## Contract\ndelivery for_destination (freight borne by seller) |\nexpected TDS TDS_194C at 1.00% |\nwe charge TCS: yes | early-payment discount: none\n\n## Buyer\nPioneer Paints Udyog Pvt Ltd (enterprise) | prior deductions: TDS-like x3, other x2\n\n## The deduction\namount Rs 25,000\nstated reason (VERBATIM, may be wrong): \"less transport charges\"\n\n## Arithmetic (computed for you — trust these)\n- deduction is 0.88% of TAXABLE value\n- NO statutory rate matches that percentage (argues against the TDS family unless a wrong rate was applied)\n- WE already charged TCS Rs 3,342 u/s 206C(1H). If the buyer also deducted 194Q at 0.10%, that is TCS_194Q_OVERLAP.",
+  "prompt_sha256": "f421b37ad4e321e10729fe5b94c02e80c55017905737801a7b5f67a7e77e6d15",
+  "provider": "ollama",
+  "repairs": [],
+  "response_text": "{\n  \"code\": \"FREIGHT\",\n  \"confidence\": 0.95,\n  \"rationale\": \"Freight is borne by the seller according to the contract. The stated reason 'less transport charges' aligns with the freight being a seller's cost.\"\n}",
+  "schema_hash": "18d94e02cf866388",
+  "schema_name": "Classification",
+  "system": "You are an accounts-receivable analyst in India classifying why a B2B buyer paid less than the invoice amount. You are precise, you cite arithmetic, and you say NEEDS_HUMAN when the evidence genuinely does not decide the answer. Guessing is worse than abstaining: a wrong reason code sends a chase letter to a customer who did nothing wrong.",
+  "task": "classify",
+  "temperature": 0.0
+}

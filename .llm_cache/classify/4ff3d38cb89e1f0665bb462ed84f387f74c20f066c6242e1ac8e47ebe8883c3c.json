@@ -1,0 +1,31 @@
+{
+  "abstained": false,
+  "key": "4ff3d38cb89e1f0665bb462ed84f387f74c20f066c6242e1ac8e47ebe8883c3c",
+  "meta": {
+    "eval_count": 51,
+    "num_ctx": 8192,
+    "prompt_eval_count": 812,
+    "tokens_per_sec": 6.45,
+    "total_duration_s": 31.978,
+    "truncation_risk": false,
+    "wall_s": 34.026
+  },
+  "model": "qwen2.5:7b-instruct",
+  "parsed": {
+    "check": null,
+    "code": "CREDIT_NOTE_OFFSET",
+    "confidence": 0.95,
+    "evidence_needed": [],
+    "rationale": "The stated reason 'net of CN' implies an existing credit note was netted, matching the deduction amount."
+  },
+  "prompt": "Classify ONE deduction a buyer took against ONE invoice. Return JSON only.\n\n## Reason codes (the full space; each case lists which are POSSIBLE for it)\nBANK_CHARGES\nCREDIT_NOTE_OFFSET = netted an existing credit note\nDAMAGE_SHORTAGE\nDEBIT_NOTE_BUYER = buyer raised their own debit note\nDUPLICATE_CLAIM = 'already paid this invoice'\nFREIGHT\nGST_TDS\nNEEDS_HUMAN = genuinely unsure — abstain\nQUALITY_REJECTION\nRATE_DIFFERENCE = WE billed above the contracted rate (our error)\nROUNDING\nSCHEME_REBATE = trade scheme / QPS claim\nTCS_194Q_OVERLAP = buyer deducted 194Q where we already charged TCS 206C(1H)\nTDS_194C\nTDS_194H\nTDS_194J\nTDS_194Q\nTDS_RATE_MISMATCH = wrong rate or wrong section\nUNEARNED_DISCOUNT = early-payment discount taken late\nUNEXPLAINED = short paid, no reason given\n\n## How to decide\n1. ARITHMETIC BEATS THE STATED REASON. If the buyer writes \"TDS 194C @ 2%\" but the\n   deduction is 5.00% of taxable value, that is TDS_RATE_MISMATCH, not TDS_194C.\n   Put the decisive number in `check`.\n2. Percentage matches a statutory rate AND the contract expects that section\n   -> use the plain section code.\n3. Percentage matches a statutory rate HIGHER than the contract's expected rate\n   -> TDS_RATE_MISMATCH.\n4. Freight is FREIGHT whoever owes it. Whether it is legitimate is decided later against\n   the contract, not by you.\n5. Under Rs 10 -> ROUNDING. Small round transfer fees -> BANK_CHARGES.\n6. No reason stated and the arithmetic matches nothing -> UNEXPLAINED.\n7. Genuinely unsure -> NEEDS_HUMAN with confidence below 0.72. Abstaining is a\n   correct and expected answer, not a failure.\n\n`confidence` is a decimal between 0.0 and 1.0, never a percentage.\nKeep `rationale` under 200 characters and cite the number that decided it.\nDo not restate the invoice.\n\n---\n## Invoice\nINV/2026/0160 | taxable Rs 97,047 | total Rs 1,14,515\nissued 2026-05-31, due 2026-06-30\n\n## Contract\ndelivery for_destination (freight borne by seller) |\nexpected TDS TDS_194Q at 0.10% |\nwe charge TCS: no | early-payment discount: none\n\n## Buyer\nChetak Packaging Udyog Pvt Ltd (sme) | prior deductions: scheme x2, credit-note x1, other x1\n\n## The deduction\namount Rs 1,075\nstated reason (VERBATIM, may be wrong): \"net of CN\"\n\n## Arithmetic (computed for you — trust these)\n- deduction is 1.11% of TAXABLE value\n- NO statutory rate matches that percentage (argues against the TDS family unless a wrong rate was applied)",
+  "prompt_sha256": "5be400f22a98279f0ea89fb22965fa7d43bc0bbd3385795f38c96c912f492334",
+  "provider": "ollama",
+  "repairs": [],
+  "response_text": "{\n  \"code\": \"CREDIT_NOTE_OFFSET\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The stated reason 'net of CN' implies an existing credit note was netted, matching the deduction amount.\"\n}",
+  "schema_hash": "18d94e02cf866388",
+  "schema_name": "Classification",
+  "system": "You are an accounts-receivable analyst in India classifying why a B2B buyer paid less than the invoice amount. You are precise, you cite arithmetic, and you say NEEDS_HUMAN when the evidence genuinely does not decide the answer. Guessing is worse than abstaining: a wrong reason code sends a chase letter to a customer who did nothing wrong.",
+  "task": "classify",
+  "temperature": 0.0
+}

@@ -1,0 +1,31 @@
+{
+  "abstained": false,
+  "key": "f11c25dc68d6ee6fcc5d3be506a48bd9d412ee639ca818cab4919037ca88048b",
+  "meta": {
+    "eval_count": 70,
+    "num_ctx": 8192,
+    "prompt_eval_count": 874,
+    "tokens_per_sec": 6.79,
+    "total_duration_s": 37.826,
+    "truncation_risk": false,
+    "wall_s": 39.883
+  },
+  "model": "qwen2.5:7b-instruct",
+  "parsed": {
+    "check": null,
+    "code": "TDS_194J",
+    "confidence": 0.95,
+    "evidence_needed": [],
+    "rationale": "The deduction is 10.00% of the taxable value, matching the statutory rate TDS_194J. The buyer's stated reason aligns with this rate."
+  },
+  "prompt": "Classify ONE deduction a buyer took against ONE invoice. Return JSON only.\n\n## Reason codes (the full space; each case lists which are POSSIBLE for it)\nBANK_CHARGES\nCREDIT_NOTE_OFFSET = netted an existing credit note\nDAMAGE_SHORTAGE\nDEBIT_NOTE_BUYER = buyer raised their own debit note\nDUPLICATE_CLAIM = 'already paid this invoice'\nFREIGHT\nGST_TDS\nNEEDS_HUMAN = genuinely unsure — abstain\nQUALITY_REJECTION\nRATE_DIFFERENCE = WE billed above the contracted rate (our error)\nROUNDING\nSCHEME_REBATE = trade scheme / QPS claim\nTCS_194Q_OVERLAP = buyer deducted 194Q where we already charged TCS 206C(1H)\nTDS_194C\nTDS_194H\nTDS_194J\nTDS_194Q\nTDS_RATE_MISMATCH = wrong rate or wrong section\nUNEARNED_DISCOUNT = early-payment discount taken late\nUNEXPLAINED = short paid, no reason given\n\n## How to decide\n1. ARITHMETIC BEATS THE STATED REASON. If the buyer writes \"TDS 194C @ 2%\" but the\n   deduction is 5.00% of taxable value, that is TDS_RATE_MISMATCH, not TDS_194C.\n   Put the decisive number in `check`.\n2. Percentage matches a statutory rate AND the contract expects that section\n   -> use the plain section code.\n3. Percentage matches a statutory rate HIGHER than the contract's expected rate\n   -> TDS_RATE_MISMATCH.\n4. Freight is FREIGHT whoever owes it. Whether it is legitimate is decided later against\n   the contract, not by you.\n5. Under Rs 10 -> ROUNDING. Small round transfer fees -> BANK_CHARGES.\n6. No reason stated and the arithmetic matches nothing -> UNEXPLAINED.\n7. Genuinely unsure -> NEEDS_HUMAN with confidence below 0.72. Abstaining is a\n   correct and expected answer, not a failure.\n\n`confidence` is a decimal between 0.0 and 1.0, never a percentage.\nKeep `rationale` under 200 characters and cite the number that decided it.\nDo not restate the invoice.\n\n---\n## Invoice\nINV/2026/0373 | taxable Rs 1,72,392 | total Rs 2,03,626\nissued 2026-05-04, due 2026-07-03\n\n## Contract\ndelivery for_destination (freight borne by seller) |\nexpected TDS TDS_194J at 10.00% |\nwe charge TCS: yes | early-payment discount: none\n\n## Buyer\nSutlej Lubricants Marketing Pvt Ltd (sme) | prior deductions: scheme x3, other x3, TDS-like x3\n\n## The deduction\namount Rs 17,239\nstated reason (VERBATIM, may be wrong): \"less TDS professional fees\"\n\n## Arithmetic (computed for you — trust these)\n- deduction is 10.00% of TAXABLE value\n- statutory rates matching that percentage: TDS_194J (10.00%)\n- WE already charged TCS Rs 203 u/s 206C(1H). If the buyer also deducted 194Q at 0.10%, that is TCS_194Q_OVERLAP.",
+  "prompt_sha256": "5d88b091b2ada0703e3386753f1c62172953712c379003e8a96b858295db7ebe",
+  "provider": "ollama",
+  "repairs": [],
+  "response_text": "{\n  \"code\": \"TDS_194J\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The deduction is 10.00% of the taxable value, matching the statutory rate TDS_194J. The buyer's stated reason aligns with this rate.\"\n}",
+  "schema_hash": "18d94e02cf866388",
+  "schema_name": "Classification",
+  "system": "You are an accounts-receivable analyst in India classifying why a B2B buyer paid less than the invoice amount. You are precise, you cite arithmetic, and you say NEEDS_HUMAN when the evidence genuinely does not decide the answer. Guessing is worse than abstaining: a wrong reason code sends a chase letter to a customer who did nothing wrong.",
+  "task": "classify",
+  "temperature": 0.0
+}
