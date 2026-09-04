@@ -1,0 +1,78 @@
+{
+ "contact_window": {
+  "start": "09:30",
+  "end": "18:30"
+ },
+ "contact_days": [
+  "mon",
+  "tue",
+  "wed",
+  "thu",
+  "fri"
+ ],
+ "max_contacts_per_case": 4,
+ "max_contacts_per_buyer_per_week": 3,
+ "min_gap_hours": 72,
+ "channel_ladder": [
+  "email",
+  "email",
+  "whatsapp",
+  "call"
+ ],
+ "escalation_ladder": [
+  "ap_clerk",
+  "ap_manager",
+  "procurement",
+  "account_manager"
+ ],
+ "forbidden_phrases": [
+  "legal action",
+  "blacklist",
+  "we will report",
+  "immediately or else",
+  "police",
+  "recovery agent",
+  "default notice"
+ ],
+ "require_consent_for": [
+  "whatsapp",
+  "sms"
+ ],
+ "stopping_rules": {
+  "stop_on_dispute_raised": true,
+  "stop_on_opt_out": true,
+  "stop_on_promise_until_days_after": 3,
+  "stop_when_expected_recovery_below_cost": true,
+  "stop_after_max_contacts": true,
+  "stop_if_relationship_value_ratio_exceeds": 20000,
+  "stop_on_verified_valid": true,
+  "stop_on_human_takeover": true
+ },
+ "economics": {
+  "contact_cost_paise": {
+   "email": 0,
+   "whatsapp": 80,
+   "sms": 25,
+   "call": 1500,
+   "human_analyst": 30000
+  },
+  "write_off_threshold_paise": 50000,
+  "min_expected_value_to_chase_paise": 20000,
+  "human_review_threshold_paise": 5000000,
+  "cn_approval_threshold_paise": 2000000
+ },
+ "confidence": {
+  "classify_floor": 0.72,
+  "match_floor": 0.85,
+  "abstain_to_human_below": 0.6
+ },
+ "settlement": {
+  "treat_as_short_after_days": 7,
+  "reopen_on_further_credit": true
+ },
+ "verification": {
+  "tds_provisional_close_when_absent": true,
+  "tds_recheck_after_days": 90,
+  "amount_tolerance_paise": 100
+ }
+}

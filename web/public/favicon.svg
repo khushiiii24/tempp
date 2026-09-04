@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- The mark, alone: money leaves the invoice and comes back round. -->
+  <rect width="32" height="32" rx="7" fill="#05060A" />
+  <g transform="translate(4 4) scale(1)">
+    <path
+      d="M14.74 4.48 A8 8 0 1 1 4.48 9.26"
+      fill="none"
+      stroke="#E8B24C"
+      stroke-width="2.4"
+      stroke-linecap="round"
+    />
+    <path d="M18.69 5.91 L13.72 7.30 L15.76 1.66 Z" fill="#E8B24C" />
+    <circle cx="12" cy="12" r="3" fill="#E9E6DE" />
+  </g>
+</svg>

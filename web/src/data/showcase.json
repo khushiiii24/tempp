@@ -1,0 +1,37 @@
+[
+ {
+  "id": "SHOW-CONTRADICT",
+  "reason": "TDS_RATE_MISMATCH",
+  "note": "Buyer's advice SAYS 'TDS 194C @ 2%' and the arithmetic is 5%. The headline demo."
+ },
+ {
+  "id": "SHOW-TCS-OVERLAP",
+  "reason": "TCS_194Q_OVERLAP",
+  "note": "Seller charged TCS 206C(1H); buyer deducted 194Q 0.1% anyway."
+ },
+ {
+  "id": "SHOW-RELATIONSHIP-STOP",
+  "reason": "UNEXPLAINED",
+  "note": "Rs ~1,200 short paid by a Rs 3Cr enterprise account. Agent must STOP and name the rule."
+ },
+ {
+  "id": "SHOW-CREDIT-HOLD",
+  "reason": "SCHEME_REBATE",
+  "note": "Large expired scheme claim from a difficult buyer that ladders to propose_credit_hold."
+ },
+ {
+  "id": "SHOW-26AS-LAG",
+  "reason": "TDS_194J",
+  "note": "Valid 194J that is NOT yet in 26AS. Correct answer is provisional close, not chase."
+ },
+ {
+  "id": "SHOW-SELF-FAULT",
+  "reason": "RATE_DIFFERENCE",
+  "note": "Seller billed above the contracted rate. Must self-issue a credit note, never chase."
+ },
+ {
+  "id": "SHOW-HUMAN-QUEUE",
+  "reason": "DAMAGE_SHORTAGE",
+  "note": "Rs 1.8L disputed damage claim — above human_review_threshold, routes to a human."
+ }
+]

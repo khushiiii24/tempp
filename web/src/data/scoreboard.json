@@ -1,0 +1,1426 @@
+{
+ "seed": 42,
+ "days": 45,
+ "policies": [
+  {
+   "policy": "agent",
+   "money": {
+    "total_short_paid_paise": 1220331756,
+    "recoverable_paise": 473279017,
+    "reachable_ceiling_paise": 224982628,
+    "recovered_paise": 26172195,
+    "recovery_rate_vs_ceiling": 0.1163,
+    "correctly_closed_valid_paise": 516842610,
+    "wrongly_written_off_paise": 0,
+    "queued_for_human_paise": 428585153,
+    "queued_reachable_paise": 191683001,
+    "addressed_paise": 217855196,
+    "cost_paise": 447020,
+    "net_recovery_paise": 25725175,
+    "rupees_per_rupee_spent": 58.55
+   },
+   "accuracy": {
+    "graded": 308,
+    "answered": 257,
+    "abstained": 51,
+    "abstention_rate": 0.1656,
+    "code_accuracy_answered": 0.7276,
+    "verdict_accuracy": 0.8539
+   },
+   "harm": {
+    "false_chase_contacts": 20,
+    "false_chase_cases": 6,
+    "contacts_total": 147,
+    "contacts_per_rupee_recovered": 0.000562,
+    "escalations_to_senior_roles": 56,
+    "credit_holds_executed": 0,
+    "credit_holds_proposed": 21
+   },
+   "operations": {
+    "cases": 308,
+    "auto_resolved": 194,
+    "auto_resolved_rate": 0.6299,
+    "human_queue": 107,
+    "approvals_pending": 21,
+    "messages_queued": 147,
+    "messages_sent_for_real": 0,
+    "mean_days_to_resolution": 4.4
+   },
+   "compliance": {
+    "contacts_examined": 147,
+    "approvals_examined": 21,
+    "violations": 0,
+    "by_rule": {},
+    "examples": []
+   },
+   "curve": [
+    {
+     "day": 0,
+     "recovered_paise": 0,
+     "contacts": 44
+    },
+    {
+     "day": 1,
+     "recovered_paise": 0,
+     "contacts": 44
+    },
+    {
+     "day": 2,
+     "recovered_paise": 1688684,
+     "contacts": 44
+    },
+    {
+     "day": 3,
+     "recovered_paise": 1688684,
+     "contacts": 63
+    },
+    {
+     "day": 4,
+     "recovered_paise": 1688684,
+     "contacts": 63
+    },
+    {
+     "day": 5,
+     "recovered_paise": 2001922,
+     "contacts": 63
+    },
+    {
+     "day": 6,
+     "recovered_paise": 2001922,
+     "contacts": 63
+    },
+    {
+     "day": 7,
+     "recovered_paise": 2803468,
+     "contacts": 99
+    },
+    {
+     "day": 8,
+     "recovered_paise": 2803468,
+     "contacts": 99
+    },
+    {
+     "day": 9,
+     "recovered_paise": 7199222,
+     "contacts": 99
+    },
+    {
+     "day": 10,
+     "recovered_paise": 9076022,
+     "contacts": 112
+    },
+    {
+     "day": 11,
+     "recovered_paise": 10415514,
+     "contacts": 112
+    },
+    {
+     "day": 12,
+     "recovered_paise": 10415514,
+     "contacts": 112
+    },
+    {
+     "day": 13,
+     "recovered_paise": 12440065,
+     "contacts": 112
+    },
+    {
+     "day": 14,
+     "recovered_paise": 15177970,
+     "contacts": 129
+    },
+    {
+     "day": 15,
+     "recovered_paise": 15591770,
+     "contacts": 129
+    },
+    {
+     "day": 16,
+     "recovered_paise": 18530270,
+     "contacts": 129
+    },
+    {
+     "day": 17,
+     "recovered_paise": 18530270,
+     "contacts": 133
+    },
+    {
+     "day": 18,
+     "recovered_paise": 19995170,
+     "contacts": 133
+    },
+    {
+     "day": 19,
+     "recovered_paise": 19995170,
+     "contacts": 133
+    },
+    {
+     "day": 20,
+     "recovered_paise": 20299383,
+     "contacts": 133
+    },
+    {
+     "day": 21,
+     "recovered_paise": 20299383,
+     "contacts": 141
+    },
+    {
+     "day": 22,
+     "recovered_paise": 21239283,
+     "contacts": 141
+    },
+    {
+     "day": 23,
+     "recovered_paise": 21239283,
+     "contacts": 141
+    },
+    {
+     "day": 24,
+     "recovered_paise": 21239283,
+     "contacts": 141
+    },
+    {
+     "day": 25,
+     "recovered_paise": 21239283,
+     "contacts": 141
+    },
+    {
+     "day": 26,
+     "recovered_paise": 21239283,
+     "contacts": 141
+    },
+    {
+     "day": 27,
+     "recovered_paise": 21239283,
+     "contacts": 141
+    },
+    {
+     "day": 28,
+     "recovered_paise": 21239283,
+     "contacts": 144
+    },
+    {
+     "day": 29,
+     "recovered_paise": 21239283,
+     "contacts": 144
+    },
+    {
+     "day": 30,
+     "recovered_paise": 21239283,
+     "contacts": 144
+    },
+    {
+     "day": 31,
+     "recovered_paise": 21239283,
+     "contacts": 144
+    },
+    {
+     "day": 32,
+     "recovered_paise": 21239283,
+     "contacts": 144
+    },
+    {
+     "day": 33,
+     "recovered_paise": 21239283,
+     "contacts": 144
+    },
+    {
+     "day": 34,
+     "recovered_paise": 21239283,
+     "contacts": 144
+    },
+    {
+     "day": 35,
+     "recovered_paise": 21239283,
+     "contacts": 146
+    },
+    {
+     "day": 36,
+     "recovered_paise": 21239283,
+     "contacts": 146
+    },
+    {
+     "day": 37,
+     "recovered_paise": 21239283,
+     "contacts": 146
+    },
+    {
+     "day": 38,
+     "recovered_paise": 26172195,
+     "contacts": 147
+    },
+    {
+     "day": 39,
+     "recovered_paise": 26172195,
+     "contacts": 147
+    },
+    {
+     "day": 40,
+     "recovered_paise": 26172195,
+     "contacts": 147
+    },
+    {
+     "day": 41,
+     "recovered_paise": 26172195,
+     "contacts": 147
+    },
+    {
+     "day": 42,
+     "recovered_paise": 26172195,
+     "contacts": 147
+    },
+    {
+     "day": 43,
+     "recovered_paise": 26172195,
+     "contacts": 147
+    },
+    {
+     "day": 44,
+     "recovered_paise": 26172195,
+     "contacts": 147
+    },
+    {
+     "day": 45,
+     "recovered_paise": 26172195,
+     "contacts": 147
+    }
+   ]
+  },
+  {
+   "policy": "b0",
+   "money": {
+    "total_short_paid_paise": 1220331756,
+    "recoverable_paise": 473279017,
+    "reachable_ceiling_paise": 224982628,
+    "recovered_paise": 0,
+    "recovery_rate_vs_ceiling": 0.0,
+    "correctly_closed_valid_paise": 0,
+    "wrongly_written_off_paise": 224982628,
+    "queued_for_human_paise": 0,
+    "queued_reachable_paise": 0,
+    "addressed_paise": 0,
+    "cost_paise": 0,
+    "net_recovery_paise": 0,
+    "rupees_per_rupee_spent": null
+   },
+   "accuracy": {
+    "graded": 308,
+    "answered": 257,
+    "abstained": 51,
+    "abstention_rate": 0.1656,
+    "code_accuracy_answered": 0.7276,
+    "verdict_accuracy": 0.8539
+   },
+   "harm": {
+    "false_chase_contacts": 0,
+    "false_chase_cases": 0,
+    "contacts_total": 0,
+    "contacts_per_rupee_recovered": null,
+    "escalations_to_senior_roles": 0,
+    "credit_holds_executed": 0,
+    "credit_holds_proposed": 0
+   },
+   "operations": {
+    "cases": 308,
+    "auto_resolved": 308,
+    "auto_resolved_rate": 1.0,
+    "human_queue": 0,
+    "approvals_pending": 0,
+    "messages_queued": 0,
+    "messages_sent_for_real": 0,
+    "mean_days_to_resolution": 0.0
+   },
+   "compliance": {
+    "contacts_examined": 0,
+    "approvals_examined": 0,
+    "violations": 0,
+    "by_rule": {},
+    "examples": []
+   },
+   "curve": [
+    {
+     "day": 0,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 1,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 2,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 3,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 4,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 5,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 6,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 7,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 8,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 9,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 10,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 11,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 12,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 13,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 14,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 15,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 16,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 17,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 18,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 19,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 20,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 21,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 22,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 23,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 24,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 25,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 26,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 27,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 28,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 29,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 30,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 31,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 32,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 33,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 34,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 35,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 36,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 37,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 38,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 39,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 40,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 41,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 42,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 43,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 44,
+     "recovered_paise": 0,
+     "contacts": 0
+    },
+    {
+     "day": 45,
+     "recovered_paise": 0,
+     "contacts": 0
+    }
+   ]
+  },
+  {
+   "policy": "b1",
+   "money": {
+    "total_short_paid_paise": 1220331756,
+    "recoverable_paise": 473279017,
+    "reachable_ceiling_paise": 224982628,
+    "recovered_paise": 51516700,
+    "recovery_rate_vs_ceiling": 0.229,
+    "correctly_closed_valid_paise": 0,
+    "wrongly_written_off_paise": 0,
+    "queued_for_human_paise": 52656538,
+    "queued_reachable_paise": 41739241,
+    "addressed_paise": 93255941,
+    "cost_paise": 0,
+    "net_recovery_paise": 51516700,
+    "rupees_per_rupee_spent": null
+   },
+   "accuracy": {
+    "graded": 308,
+    "answered": 257,
+    "abstained": 51,
+    "abstention_rate": 0.1656,
+    "code_accuracy_answered": 0.7276,
+    "verdict_accuracy": 0.8539
+   },
+   "harm": {
+    "false_chase_contacts": 473,
+    "false_chase_cases": 137,
+    "contacts_total": 669,
+    "contacts_per_rupee_recovered": 0.001299,
+    "escalations_to_senior_roles": 0,
+    "credit_holds_executed": 0,
+    "credit_holds_proposed": 21
+   },
+   "operations": {
+    "cases": 308,
+    "auto_resolved": 104,
+    "auto_resolved_rate": 0.3377,
+    "human_queue": 20,
+    "approvals_pending": 21,
+    "messages_queued": 669,
+    "messages_sent_for_real": 0,
+    "mean_days_to_resolution": 87.7
+   },
+   "compliance": {
+    "contacts_examined": 669,
+    "approvals_examined": 21,
+    "violations": 0,
+    "by_rule": {},
+    "examples": []
+   },
+   "curve": [
+    {
+     "day": 0,
+     "recovered_paise": 0,
+     "contacts": 104
+    },
+    {
+     "day": 1,
+     "recovered_paise": 0,
+     "contacts": 104
+    },
+    {
+     "day": 2,
+     "recovered_paise": 0,
+     "contacts": 104
+    },
+    {
+     "day": 3,
+     "recovered_paise": 0,
+     "contacts": 104
+    },
+    {
+     "day": 4,
+     "recovered_paise": 0,
+     "contacts": 104
+    },
+    {
+     "day": 5,
+     "recovered_paise": 0,
+     "contacts": 104
+    },
+    {
+     "day": 6,
+     "recovered_paise": 0,
+     "contacts": 104
+    },
+    {
+     "day": 7,
+     "recovered_paise": 0,
+     "contacts": 208
+    },
+    {
+     "day": 8,
+     "recovered_paise": 0,
+     "contacts": 208
+    },
+    {
+     "day": 9,
+     "recovered_paise": 0,
+     "contacts": 208
+    },
+    {
+     "day": 10,
+     "recovered_paise": 951900,
+     "contacts": 208
+    },
+    {
+     "day": 11,
+     "recovered_paise": 951900,
+     "contacts": 208
+    },
+    {
+     "day": 12,
+     "recovered_paise": 951900,
+     "contacts": 208
+    },
+    {
+     "day": 13,
+     "recovered_paise": 951900,
+     "contacts": 208
+    },
+    {
+     "day": 14,
+     "recovered_paise": 951900,
+     "contacts": 312
+    },
+    {
+     "day": 15,
+     "recovered_paise": 951900,
+     "contacts": 312
+    },
+    {
+     "day": 16,
+     "recovered_paise": 5036400,
+     "contacts": 312
+    },
+    {
+     "day": 17,
+     "recovered_paise": 5036400,
+     "contacts": 312
+    },
+    {
+     "day": 18,
+     "recovered_paise": 5036400,
+     "contacts": 312
+    },
+    {
+     "day": 19,
+     "recovered_paise": 5036400,
+     "contacts": 312
+    },
+    {
+     "day": 20,
+     "recovered_paise": 7695300,
+     "contacts": 312
+    },
+    {
+     "day": 21,
+     "recovered_paise": 7695300,
+     "contacts": 416
+    },
+    {
+     "day": 22,
+     "recovered_paise": 7695300,
+     "contacts": 416
+    },
+    {
+     "day": 23,
+     "recovered_paise": 7695300,
+     "contacts": 416
+    },
+    {
+     "day": 24,
+     "recovered_paise": 7695300,
+     "contacts": 416
+    },
+    {
+     "day": 25,
+     "recovered_paise": 7695300,
+     "contacts": 416
+    },
+    {
+     "day": 26,
+     "recovered_paise": 7695300,
+     "contacts": 416
+    },
+    {
+     "day": 27,
+     "recovered_paise": 7695300,
+     "contacts": 416
+    },
+    {
+     "day": 28,
+     "recovered_paise": 7695300,
+     "contacts": 503
+    },
+    {
+     "day": 29,
+     "recovered_paise": 7695300,
+     "contacts": 503
+    },
+    {
+     "day": 30,
+     "recovered_paise": 7695300,
+     "contacts": 503
+    },
+    {
+     "day": 31,
+     "recovered_paise": 7695300,
+     "contacts": 503
+    },
+    {
+     "day": 32,
+     "recovered_paise": 7877800,
+     "contacts": 503
+    },
+    {
+     "day": 33,
+     "recovered_paise": 7877800,
+     "contacts": 503
+    },
+    {
+     "day": 34,
+     "recovered_paise": 7877800,
+     "contacts": 503
+    },
+    {
+     "day": 35,
+     "recovered_paise": 8069412,
+     "contacts": 589
+    },
+    {
+     "day": 36,
+     "recovered_paise": 8069412,
+     "contacts": 589
+    },
+    {
+     "day": 37,
+     "recovered_paise": 14989847,
+     "contacts": 589
+    },
+    {
+     "day": 38,
+     "recovered_paise": 50243847,
+     "contacts": 589
+    },
+    {
+     "day": 39,
+     "recovered_paise": 51161447,
+     "contacts": 589
+    },
+    {
+     "day": 40,
+     "recovered_paise": 51161447,
+     "contacts": 589
+    },
+    {
+     "day": 41,
+     "recovered_paise": 51448347,
+     "contacts": 589
+    },
+    {
+     "day": 42,
+     "recovered_paise": 51516700,
+     "contacts": 669
+    },
+    {
+     "day": 43,
+     "recovered_paise": 51516700,
+     "contacts": 669
+    },
+    {
+     "day": 44,
+     "recovered_paise": 51516700,
+     "contacts": 669
+    },
+    {
+     "day": 45,
+     "recovered_paise": 51516700,
+     "contacts": 669
+    }
+   ]
+  },
+  {
+   "policy": "b2",
+   "money": {
+    "total_short_paid_paise": 1220331756,
+    "recoverable_paise": 473279017,
+    "reachable_ceiling_paise": 224982628,
+    "recovered_paise": 56882427,
+    "recovery_rate_vs_ceiling": 0.2528,
+    "correctly_closed_valid_paise": 0,
+    "wrongly_written_off_paise": 4248518,
+    "queued_for_human_paise": 162083742,
+    "queued_reachable_paise": 53348852,
+    "addressed_paise": 110231279,
+    "cost_paise": 235640,
+    "net_recovery_paise": 56646787,
+    "rupees_per_rupee_spent": 241.4
+   },
+   "accuracy": {
+    "graded": 308,
+    "answered": 257,
+    "abstained": 51,
+    "abstention_rate": 0.1656,
+    "code_accuracy_answered": 0.7276,
+    "verdict_accuracy": 0.8539
+   },
+   "harm": {
+    "false_chase_contacts": 322,
+    "false_chase_cases": 90,
+    "contacts_total": 483,
+    "contacts_per_rupee_recovered": 0.000849,
+    "escalations_to_senior_roles": 0,
+    "credit_holds_executed": 0,
+    "credit_holds_proposed": 21
+   },
+   "operations": {
+    "cases": 308,
+    "auto_resolved": 227,
+    "auto_resolved_rate": 0.737,
+    "human_queue": 20,
+    "approvals_pending": 21,
+    "messages_queued": 483,
+    "messages_sent_for_real": 0,
+    "mean_days_to_resolution": 32.9
+   },
+   "compliance": {
+    "contacts_examined": 483,
+    "approvals_examined": 21,
+    "violations": 0,
+    "by_rule": {},
+    "examples": []
+   },
+   "curve": [
+    {
+     "day": 0,
+     "recovered_paise": 0,
+     "contacts": 90
+    },
+    {
+     "day": 1,
+     "recovered_paise": 0,
+     "contacts": 90
+    },
+    {
+     "day": 2,
+     "recovered_paise": 1688684,
+     "contacts": 90
+    },
+    {
+     "day": 3,
+     "recovered_paise": 1688684,
+     "contacts": 99
+    },
+    {
+     "day": 4,
+     "recovered_paise": 1688684,
+     "contacts": 99
+    },
+    {
+     "day": 5,
+     "recovered_paise": 1688684,
+     "contacts": 99
+    },
+    {
+     "day": 6,
+     "recovered_paise": 1688684,
+     "contacts": 99
+    },
+    {
+     "day": 7,
+     "recovered_paise": 1688684,
+     "contacts": 187
+    },
+    {
+     "day": 8,
+     "recovered_paise": 1688684,
+     "contacts": 187
+    },
+    {
+     "day": 9,
+     "recovered_paise": 6920435,
+     "contacts": 187
+    },
+    {
+     "day": 10,
+     "recovered_paise": 7793435,
+     "contacts": 196
+    },
+    {
+     "day": 11,
+     "recovered_paise": 8711035,
+     "contacts": 196
+    },
+    {
+     "day": 12,
+     "recovered_paise": 8711035,
+     "contacts": 196
+    },
+    {
+     "day": 13,
+     "recovered_paise": 8711035,
+     "contacts": 196
+    },
+    {
+     "day": 14,
+     "recovered_paise": 8711035,
+     "contacts": 273
+    },
+    {
+     "day": 15,
+     "recovered_paise": 8711035,
+     "contacts": 273
+    },
+    {
+     "day": 16,
+     "recovered_paise": 12795535,
+     "contacts": 273
+    },
+    {
+     "day": 17,
+     "recovered_paise": 12795535,
+     "contacts": 277
+    },
+    {
+     "day": 18,
+     "recovered_paise": 12795535,
+     "contacts": 277
+    },
+    {
+     "day": 19,
+     "recovered_paise": 12795535,
+     "contacts": 277
+    },
+    {
+     "day": 20,
+     "recovered_paise": 12795535,
+     "contacts": 277
+    },
+    {
+     "day": 21,
+     "recovered_paise": 12795535,
+     "contacts": 350
+    },
+    {
+     "day": 22,
+     "recovered_paise": 12795535,
+     "contacts": 350
+    },
+    {
+     "day": 23,
+     "recovered_paise": 12795535,
+     "contacts": 350
+    },
+    {
+     "day": 24,
+     "recovered_paise": 12795535,
+     "contacts": 350
+    },
+    {
+     "day": 25,
+     "recovered_paise": 15753235,
+     "contacts": 350
+    },
+    {
+     "day": 26,
+     "recovered_paise": 15753235,
+     "contacts": 350
+    },
+    {
+     "day": 27,
+     "recovered_paise": 18412135,
+     "contacts": 350
+    },
+    {
+     "day": 28,
+     "recovered_paise": 18412135,
+     "contacts": 397
+    },
+    {
+     "day": 29,
+     "recovered_paise": 18412135,
+     "contacts": 397
+    },
+    {
+     "day": 30,
+     "recovered_paise": 18412135,
+     "contacts": 397
+    },
+    {
+     "day": 31,
+     "recovered_paise": 18412135,
+     "contacts": 403
+    },
+    {
+     "day": 32,
+     "recovered_paise": 18412135,
+     "contacts": 403
+    },
+    {
+     "day": 33,
+     "recovered_paise": 18412135,
+     "contacts": 403
+    },
+    {
+     "day": 34,
+     "recovered_paise": 53666135,
+     "contacts": 403
+    },
+    {
+     "day": 35,
+     "recovered_paise": 53666135,
+     "contacts": 443
+    },
+    {
+     "day": 36,
+     "recovered_paise": 53666135,
+     "contacts": 443
+    },
+    {
+     "day": 37,
+     "recovered_paise": 53666135,
+     "contacts": 443
+    },
+    {
+     "day": 38,
+     "recovered_paise": 53666135,
+     "contacts": 449
+    },
+    {
+     "day": 39,
+     "recovered_paise": 55005627,
+     "contacts": 449
+    },
+    {
+     "day": 40,
+     "recovered_paise": 55005627,
+     "contacts": 449
+    },
+    {
+     "day": 41,
+     "recovered_paise": 55005627,
+     "contacts": 449
+    },
+    {
+     "day": 42,
+     "recovered_paise": 56882427,
+     "contacts": 483
+    },
+    {
+     "day": 43,
+     "recovered_paise": 56882427,
+     "contacts": 483
+    },
+    {
+     "day": 44,
+     "recovered_paise": 56882427,
+     "contacts": 483
+    },
+    {
+     "day": 45,
+     "recovered_paise": 56882427,
+     "contacts": 483
+    }
+   ]
+  },
+  {
+   "policy": "b3",
+   "money": {
+    "total_short_paid_paise": 1220331756,
+    "recoverable_paise": 473279017,
+    "reachable_ceiling_paise": 224982628,
+    "recovered_paise": 51007808,
+    "recovery_rate_vs_ceiling": 0.2267,
+    "correctly_closed_valid_paise": 390679214,
+    "wrongly_written_off_paise": 0,
+    "queued_for_human_paise": 279338395,
+    "queued_reachable_paise": 123283135,
+    "addressed_paise": 174290943,
+    "cost_paise": 1754260,
+    "net_recovery_paise": 49253548,
+    "rupees_per_rupee_spent": 29.08
+   },
+   "accuracy": {
+    "graded": 308,
+    "answered": 257,
+    "abstained": 51,
+    "abstention_rate": 0.1656,
+    "code_accuracy_answered": 0.7276,
+    "verdict_accuracy": 0.8539
+   },
+   "harm": {
+    "false_chase_contacts": 220,
+    "false_chase_cases": 60,
+    "contacts_total": 422,
+    "contacts_per_rupee_recovered": 0.000827,
+    "escalations_to_senior_roles": 0,
+    "credit_holds_executed": 0,
+    "credit_holds_proposed": 50
+   },
+   "operations": {
+    "cases": 308,
+    "auto_resolved": 177,
+    "auto_resolved_rate": 0.5747,
+    "human_queue": 97,
+    "approvals_pending": 50,
+    "messages_queued": 422,
+    "messages_sent_for_real": 0,
+    "mean_days_to_resolution": 26.5
+   },
+   "compliance": {
+    "contacts_examined": 422,
+    "approvals_examined": 50,
+    "violations": 0,
+    "by_rule": {},
+    "examples": []
+   },
+   "curve": [
+    {
+     "day": 0,
+     "recovered_paise": 0,
+     "contacts": 88
+    },
+    {
+     "day": 1,
+     "recovered_paise": 0,
+     "contacts": 88
+    },
+    {
+     "day": 2,
+     "recovered_paise": 0,
+     "contacts": 88
+    },
+    {
+     "day": 3,
+     "recovered_paise": 0,
+     "contacts": 97
+    },
+    {
+     "day": 4,
+     "recovered_paise": 0,
+     "contacts": 97
+    },
+    {
+     "day": 5,
+     "recovered_paise": 0,
+     "contacts": 97
+    },
+    {
+     "day": 6,
+     "recovered_paise": 0,
+     "contacts": 97
+    },
+    {
+     "day": 7,
+     "recovered_paise": 191612,
+     "contacts": 183
+    },
+    {
+     "day": 8,
+     "recovered_paise": 191612,
+     "contacts": 183
+    },
+    {
+     "day": 9,
+     "recovered_paise": 6276050,
+     "contacts": 183
+    },
+    {
+     "day": 10,
+     "recovered_paise": 42403050,
+     "contacts": 194
+    },
+    {
+     "day": 11,
+     "recovered_paise": 42403050,
+     "contacts": 194
+    },
+    {
+     "day": 12,
+     "recovered_paise": 42403050,
+     "contacts": 194
+    },
+    {
+     "day": 13,
+     "recovered_paise": 42403050,
+     "contacts": 194
+    },
+    {
+     "day": 14,
+     "recovered_paise": 44279850,
+     "contacts": 269
+    },
+    {
+     "day": 15,
+     "recovered_paise": 44279850,
+     "contacts": 269
+    },
+    {
+     "day": 16,
+     "recovered_paise": 44279850,
+     "contacts": 269
+    },
+    {
+     "day": 17,
+     "recovered_paise": 44279850,
+     "contacts": 277
+    },
+    {
+     "day": 18,
+     "recovered_paise": 45514450,
+     "contacts": 277
+    },
+    {
+     "day": 19,
+     "recovered_paise": 45514450,
+     "contacts": 277
+    },
+    {
+     "day": 20,
+     "recovered_paise": 45514450,
+     "contacts": 277
+    },
+    {
+     "day": 21,
+     "recovered_paise": 45582803,
+     "contacts": 341
+    },
+    {
+     "day": 22,
+     "recovered_paise": 45582803,
+     "contacts": 341
+    },
+    {
+     "day": 23,
+     "recovered_paise": 45582803,
+     "contacts": 341
+    },
+    {
+     "day": 24,
+     "recovered_paise": 45582803,
+     "contacts": 341
+    },
+    {
+     "day": 25,
+     "recovered_paise": 45582803,
+     "contacts": 341
+    },
+    {
+     "day": 26,
+     "recovered_paise": 46522703,
+     "contacts": 341
+    },
+    {
+     "day": 27,
+     "recovered_paise": 49181603,
+     "contacts": 341
+    },
+    {
+     "day": 28,
+     "recovered_paise": 49181603,
+     "contacts": 369
+    },
+    {
+     "day": 29,
+     "recovered_paise": 49181603,
+     "contacts": 369
+    },
+    {
+     "day": 30,
+     "recovered_paise": 49181603,
+     "contacts": 369
+    },
+    {
+     "day": 31,
+     "recovered_paise": 49485816,
+     "contacts": 381
+    },
+    {
+     "day": 32,
+     "recovered_paise": 49668316,
+     "contacts": 381
+    },
+    {
+     "day": 33,
+     "recovered_paise": 49668316,
+     "contacts": 381
+    },
+    {
+     "day": 34,
+     "recovered_paise": 49668316,
+     "contacts": 381
+    },
+    {
+     "day": 35,
+     "recovered_paise": 49668316,
+     "contacts": 403
+    },
+    {
+     "day": 36,
+     "recovered_paise": 49668316,
+     "contacts": 403
+    },
+    {
+     "day": 37,
+     "recovered_paise": 49668316,
+     "contacts": 403
+    },
+    {
+     "day": 38,
+     "recovered_paise": 49668316,
+     "contacts": 411
+    },
+    {
+     "day": 39,
+     "recovered_paise": 51007808,
+     "contacts": 411
+    },
+    {
+     "day": 40,
+     "recovered_paise": 51007808,
+     "contacts": 411
+    },
+    {
+     "day": 41,
+     "recovered_paise": 51007808,
+     "contacts": 411
+    },
+    {
+     "day": 42,
+     "recovered_paise": 51007808,
+     "contacts": 422
+    },
+    {
+     "day": 43,
+     "recovered_paise": 51007808,
+     "contacts": 422
+    },
+    {
+     "day": 44,
+     "recovered_paise": 51007808,
+     "contacts": 422
+    },
+    {
+     "day": 45,
+     "recovered_paise": 51007808,
+     "contacts": 422
+    }
+   ]
+  }
+ ]
+}

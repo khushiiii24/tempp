@@ -1,0 +1,415 @@
+{
+ "funnel": [
+  {
+   "key": "invoices",
+   "label": "Invoices raised",
+   "count": 400,
+   "paise": 45135533300,
+   "note": "Generated batch, seed 42."
+  },
+  {
+   "key": "payments",
+   "label": "Bank credits received",
+   "count": 218,
+   "paise": 43915201544,
+   "note": "Mangled narrations, split payments, bundled UTRs."
+  },
+  {
+   "key": "matched",
+   "label": "Credits matched to invoices",
+   "count": 182,
+   "paise": 33543990689,
+   "note": "292 invoices allocated across 178 credits. Advice, then exact, normalised, fuzzy, subset-sum. Anything left over is published as an exception rather than guessed."
+  },
+  {
+   "key": "deductions",
+   "label": "Shortfalls isolated",
+   "count": 308,
+   "paise": 1220331756,
+   "note": "Every rupee of invoice-to-cash gap, split by component."
+  },
+  {
+   "key": "cases",
+   "label": "Cases opened",
+   "count": 308,
+   "paise": 1220331756,
+   "note": "Split payments wait out the settlement grace period first."
+  },
+  {
+   "key": "classified",
+   "label": "Classified by the model",
+   "count": 257,
+   "paise": 1074178153,
+   "note": "51 abstained to a human rather than guess."
+  },
+  {
+   "key": "verified",
+   "label": "Verified against source data",
+   "count": 257,
+   "paise": 1074178153,
+   "note": "26AS, credit-note ledger, contract, scheme master, GRN."
+  },
+  {
+   "key": "contacted",
+   "label": "Cases chased",
+   "count": 48,
+   "paise": 81303771,
+   "note": "147 contacts in total — inside the IST window, on a channel the buyer consented to, every one queued dry-run."
+  },
+  {
+   "key": "recovered",
+   "label": "Recovered",
+   "count": 18,
+   "paise": 26172195,
+   "note": "Cash back against the shortfall."
+  }
+ ],
+ "curve": [
+  {
+   "day": 0,
+   "recovered_paise": 0,
+   "contacts": 44,
+   "closed": 260
+  },
+  {
+   "day": 1,
+   "recovered_paise": 0,
+   "contacts": 44,
+   "closed": 263
+  },
+  {
+   "day": 2,
+   "recovered_paise": 1688684,
+   "contacts": 44,
+   "closed": 264
+  },
+  {
+   "day": 3,
+   "recovered_paise": 1688684,
+   "contacts": 63,
+   "closed": 265
+  },
+  {
+   "day": 4,
+   "recovered_paise": 1688684,
+   "contacts": 63,
+   "closed": 267
+  },
+  {
+   "day": 5,
+   "recovered_paise": 2001922,
+   "contacts": 63,
+   "closed": 268
+  },
+  {
+   "day": 6,
+   "recovered_paise": 2001922,
+   "contacts": 63,
+   "closed": 268
+  },
+  {
+   "day": 7,
+   "recovered_paise": 2803468,
+   "contacts": 99,
+   "closed": 270
+  },
+  {
+   "day": 8,
+   "recovered_paise": 2803468,
+   "contacts": 99,
+   "closed": 273
+  },
+  {
+   "day": 9,
+   "recovered_paise": 7199222,
+   "contacts": 99,
+   "closed": 274
+  },
+  {
+   "day": 10,
+   "recovered_paise": 9076022,
+   "contacts": 112,
+   "closed": 275
+  },
+  {
+   "day": 11,
+   "recovered_paise": 10415514,
+   "contacts": 112,
+   "closed": 282
+  },
+  {
+   "day": 12,
+   "recovered_paise": 10415514,
+   "contacts": 112,
+   "closed": 282
+  },
+  {
+   "day": 13,
+   "recovered_paise": 12440065,
+   "contacts": 112,
+   "closed": 283
+  },
+  {
+   "day": 14,
+   "recovered_paise": 15177970,
+   "contacts": 129,
+   "closed": 285
+  },
+  {
+   "day": 15,
+   "recovered_paise": 15591770,
+   "contacts": 129,
+   "closed": 291
+  },
+  {
+   "day": 16,
+   "recovered_paise": 18530270,
+   "contacts": 129,
+   "closed": 293
+  },
+  {
+   "day": 17,
+   "recovered_paise": 18530270,
+   "contacts": 133,
+   "closed": 294
+  },
+  {
+   "day": 18,
+   "recovered_paise": 19995170,
+   "contacts": 133,
+   "closed": 298
+  },
+  {
+   "day": 19,
+   "recovered_paise": 19995170,
+   "contacts": 133,
+   "closed": 298
+  },
+  {
+   "day": 20,
+   "recovered_paise": 20299383,
+   "contacts": 133,
+   "closed": 299
+  },
+  {
+   "day": 21,
+   "recovered_paise": 20299383,
+   "contacts": 141,
+   "closed": 299
+  },
+  {
+   "day": 22,
+   "recovered_paise": 21239283,
+   "contacts": 141,
+   "closed": 305
+  },
+  {
+   "day": 23,
+   "recovered_paise": 21239283,
+   "contacts": 141,
+   "closed": 305
+  },
+  {
+   "day": 24,
+   "recovered_paise": 21239283,
+   "contacts": 141,
+   "closed": 305
+  },
+  {
+   "day": 25,
+   "recovered_paise": 21239283,
+   "contacts": 141,
+   "closed": 305
+  },
+  {
+   "day": 26,
+   "recovered_paise": 21239283,
+   "contacts": 141,
+   "closed": 305
+  },
+  {
+   "day": 27,
+   "recovered_paise": 21239283,
+   "contacts": 141,
+   "closed": 305
+  },
+  {
+   "day": 28,
+   "recovered_paise": 21239283,
+   "contacts": 144,
+   "closed": 305
+  },
+  {
+   "day": 29,
+   "recovered_paise": 21239283,
+   "contacts": 144,
+   "closed": 306
+  },
+  {
+   "day": 30,
+   "recovered_paise": 21239283,
+   "contacts": 144,
+   "closed": 306
+  },
+  {
+   "day": 31,
+   "recovered_paise": 21239283,
+   "contacts": 144,
+   "closed": 306
+  },
+  {
+   "day": 32,
+   "recovered_paise": 21239283,
+   "contacts": 144,
+   "closed": 306
+  },
+  {
+   "day": 33,
+   "recovered_paise": 21239283,
+   "contacts": 144,
+   "closed": 306
+  },
+  {
+   "day": 34,
+   "recovered_paise": 21239283,
+   "contacts": 144,
+   "closed": 306
+  },
+  {
+   "day": 35,
+   "recovered_paise": 21239283,
+   "contacts": 146,
+   "closed": 306
+  },
+  {
+   "day": 36,
+   "recovered_paise": 21239283,
+   "contacts": 146,
+   "closed": 306
+  },
+  {
+   "day": 37,
+   "recovered_paise": 21239283,
+   "contacts": 146,
+   "closed": 306
+  },
+  {
+   "day": 38,
+   "recovered_paise": 26172195,
+   "contacts": 147,
+   "closed": 307
+  },
+  {
+   "day": 39,
+   "recovered_paise": 26172195,
+   "contacts": 147,
+   "closed": 308
+  },
+  {
+   "day": 40,
+   "recovered_paise": 26172195,
+   "contacts": 147,
+   "closed": 308
+  },
+  {
+   "day": 41,
+   "recovered_paise": 26172195,
+   "contacts": 147,
+   "closed": 308
+  },
+  {
+   "day": 42,
+   "recovered_paise": 26172195,
+   "contacts": 147,
+   "closed": 308
+  },
+  {
+   "day": 43,
+   "recovered_paise": 26172195,
+   "contacts": 147,
+   "closed": 308
+  },
+  {
+   "day": 44,
+   "recovered_paise": 26172195,
+   "contacts": 147,
+   "closed": 308
+  },
+  {
+   "day": 45,
+   "recovered_paise": 26172195,
+   "contacts": 147,
+   "closed": 308
+  }
+ ],
+ "matching": {
+  "payments": 218,
+  "matched": 182,
+  "match_rate": 0.8349,
+  "source": "reports/matching/matching.json",
+  "by_method": [
+   {
+    "method": "advice",
+    "count": 87
+   },
+   {
+    "method": "normalised",
+    "count": 87
+   },
+   {
+    "method": "fuzzy",
+    "count": 4
+   },
+   {
+    "method": "subset_sum",
+    "count": 4
+   }
+  ],
+  "exceptions": [
+   {
+    "kind": "ambiguous_amount_match",
+    "count": 21
+   },
+   {
+    "kind": "incomplete_bundle",
+    "count": 13
+   },
+   {
+    "kind": "over_allocation_blocked",
+    "count": 4
+   },
+   {
+    "kind": "unmatched_payment",
+    "count": 2
+   }
+  ],
+  "exceptions_total": 40,
+  "invoices_with_allocations": 292,
+  "fully_settled": 140,
+  "with_shortfall": 152,
+  "awaiting_settlement": 0
+ },
+ "states": [
+  {
+   "state": "human_queue",
+   "count": 107
+  },
+  {
+   "state": "resolved_closed_valid",
+   "count": 161
+  },
+  {
+   "state": "resolved_recovered",
+   "count": 18
+  },
+  {
+   "state": "stopped",
+   "count": 22
+  }
+ ],
+ "abstained": 51,
+ "outbox": 147,
+ "outbox_sent_for_real": 0,
+ "approvals_requested": 21,
+ "approvals_granted": 0
+}

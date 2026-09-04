@@ -1,0 +1,222 @@
+[
+ {
+  "code": "NEEDS_HUMAN",
+  "label": "Classifier abstained",
+  "family": "abstain",
+  "verifier": "none",
+  "chaseable": false,
+  "default_valid": null,
+  "default_action": "route_to_human",
+  "expected_rate_bp": null,
+  "note": "A first-class outcome, not a failure. Counted separately from wrong answers."
+ },
+ {
+  "code": "FREIGHT",
+  "label": "Freight / transport recovered by the buyer",
+  "family": "contract",
+  "verifier": "contract",
+  "chaseable": true,
+  "default_valid": null,
+  "default_action": "verify_then_branch",
+  "expected_rate_bp": null,
+  "note": "Valid under FOR-destination, invalid under ex-works."
+ },
+ {
+  "code": "RATE_DIFFERENCE",
+  "label": "Billed above the contracted rate",
+  "family": "contract",
+  "verifier": "contract",
+  "chaseable": false,
+  "default_valid": true,
+  "default_action": "issue_credit_note",
+  "expected_rate_bp": null,
+  "note": "This is the SELLER's error. Self-correct; never chase."
+ },
+ {
+  "code": "UNEARNED_DISCOUNT",
+  "label": "Early-payment discount taken outside the discount window",
+  "family": "contract",
+  "verifier": "contract",
+  "chaseable": true,
+  "default_valid": false,
+  "default_action": "chase",
+  "expected_rate_bp": null,
+  "note": ""
+ },
+ {
+  "code": "CREDIT_NOTE_OFFSET",
+  "label": "Netted off an existing credit note",
+  "family": "credit_note",
+  "verifier": "credit_notes",
+  "chaseable": true,
+  "default_valid": null,
+  "default_action": "verify_then_branch",
+  "expected_rate_bp": null,
+  "note": ""
+ },
+ {
+  "code": "BANK_CHARGES",
+  "label": "NEFT/RTGS or intermediary bank charges",
+  "family": "deminimis",
+  "verifier": "deminimis",
+  "chaseable": false,
+  "default_valid": true,
+  "default_action": "write_off",
+  "expected_rate_bp": null,
+  "note": ""
+ },
+ {
+  "code": "ROUNDING",
+  "label": "Sub-Rs 10 rounding difference",
+  "family": "deminimis",
+  "verifier": "deminimis",
+  "chaseable": false,
+  "default_valid": true,
+  "default_action": "write_off",
+  "expected_rate_bp": null,
+  "note": ""
+ },
+ {
+  "code": "DUPLICATE_CLAIM",
+  "label": "Buyer asserts the invoice was already paid",
+  "family": "duplicate",
+  "verifier": "duplicates",
+  "chaseable": true,
+  "default_valid": null,
+  "default_action": "verify_then_branch",
+  "expected_rate_bp": null,
+  "note": ""
+ },
+ {
+  "code": "DAMAGE_SHORTAGE",
+  "label": "Goods damaged or short-delivered",
+  "family": "goods",
+  "verifier": "grn",
+  "chaseable": true,
+  "default_valid": null,
+  "default_action": "verify_then_branch",
+  "expected_rate_bp": null,
+  "note": ""
+ },
+ {
+  "code": "DEBIT_NOTE_BUYER",
+  "label": "Buyer-raised debit note",
+  "family": "goods",
+  "verifier": "grn",
+  "chaseable": true,
+  "default_valid": null,
+  "default_action": "request_document",
+  "expected_rate_bp": null,
+  "note": ""
+ },
+ {
+  "code": "QUALITY_REJECTION",
+  "label": "Material rejected on quality grounds",
+  "family": "goods",
+  "verifier": "grn",
+  "chaseable": true,
+  "default_valid": null,
+  "default_action": "verify_then_branch",
+  "expected_rate_bp": null,
+  "note": ""
+ },
+ {
+  "code": "GST_TDS",
+  "label": "GST TDS 2% — government / PSU buyers",
+  "family": "gst",
+  "verifier": "tds",
+  "chaseable": false,
+  "default_valid": true,
+  "default_action": "close_valid",
+  "expected_rate_bp": 200,
+  "note": ""
+ },
+ {
+  "code": "SCHEME_REBATE",
+  "label": "Trade scheme / quarterly purchase scheme claim",
+  "family": "scheme",
+  "verifier": "scheme",
+  "chaseable": true,
+  "default_valid": null,
+  "default_action": "verify_then_branch",
+  "expected_rate_bp": null,
+  "note": ""
+ },
+ {
+  "code": "TCS_194Q_OVERLAP",
+  "label": "Buyer deducted 194Q where the seller already charged TCS u/s 206C(1H)",
+  "family": "tds",
+  "verifier": "tds",
+  "chaseable": true,
+  "default_valid": false,
+  "default_action": "chase",
+  "expected_rate_bp": null,
+  "note": "Both parties think they are responsible. Chase with the legal explanation."
+ },
+ {
+  "code": "TDS_194C",
+  "label": "TDS u/s 194C — payments to contractors",
+  "family": "tds",
+  "verifier": "tds",
+  "chaseable": false,
+  "default_valid": true,
+  "default_action": "close_valid",
+  "expected_rate_bp": 200,
+  "note": "Statutory. Never chase the principal — claim it as a tax credit."
+ },
+ {
+  "code": "TDS_194H",
+  "label": "TDS u/s 194H — commission or brokerage",
+  "family": "tds",
+  "verifier": "tds",
+  "chaseable": false,
+  "default_valid": true,
+  "default_action": "close_valid",
+  "expected_rate_bp": 500,
+  "note": ""
+ },
+ {
+  "code": "TDS_194J",
+  "label": "TDS u/s 194J — professional / technical fees",
+  "family": "tds",
+  "verifier": "tds",
+  "chaseable": false,
+  "default_valid": true,
+  "default_action": "close_valid",
+  "expected_rate_bp": 1000,
+  "note": ""
+ },
+ {
+  "code": "TDS_194Q",
+  "label": "TDS u/s 194Q — purchase of goods above Rs 50L",
+  "family": "tds",
+  "verifier": "tds",
+  "chaseable": false,
+  "default_valid": true,
+  "default_action": "close_valid",
+  "expected_rate_bp": 10,
+  "note": ""
+ },
+ {
+  "code": "TDS_RATE_MISMATCH",
+  "label": "Deducted at the wrong rate or under the wrong section",
+  "family": "tds",
+  "verifier": "tds",
+  "chaseable": true,
+  "default_valid": false,
+  "default_action": "chase",
+  "expected_rate_bp": null,
+  "note": "Only the excess over the correct rate is recoverable. Show the computation."
+ },
+ {
+  "code": "UNEXPLAINED",
+  "label": "Short paid with no reason given",
+  "family": "unexplained",
+  "verifier": "unexplained",
+  "chaseable": true,
+  "default_valid": false,
+  "default_action": "request_document",
+  "expected_rate_bp": null,
+  "note": ""
+ }
+]

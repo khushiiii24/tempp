@@ -1,0 +1,16 @@
+{
+ "generated_at": "2026-08-31T22:07:49",
+ "run_id": "agent-web-0831220748",
+ "seed": 42,
+ "days": 45,
+ "db_content_hash": "728b11e9ce7089f7c3d856968cfb4f11e987dadb24349d4224c38261561d0ba2",
+ "cases": 308,
+ "config_files": [
+  "generator.yaml",
+  "llm.yaml",
+  "policy.yaml",
+  "razorpay.yaml",
+  "reason_codes.yaml"
+ ],
+ "scoreboard_present": true
+}

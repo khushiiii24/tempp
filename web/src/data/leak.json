@@ -1,0 +1,437 @@
+{
+ "invoices": 400,
+ "invoice_value_paise": 45135533300,
+ "payments": 218,
+ "deductions": 308,
+ "short_paid_paise": 1220331756,
+ "leak_rate_bp": 270,
+ "recoverable_paise": 473279017,
+ "reachable_paise": 224982628,
+ "valid_paise": 607036497,
+ "largest_deduction": {
+  "paise": 142293723,
+  "code": "TDS_RATE_MISMATCH",
+  "reason_text": "TDS 194H @5%"
+ },
+ "smallest_bucket_count": 85,
+ "by_family": [
+  {
+   "family": "contract",
+   "count": 42,
+   "paise": 67027108,
+   "recoverable_paise": 22863482,
+   "valid_count": 19
+  },
+  {
+   "family": "credit_note",
+   "count": 32,
+   "paise": 69350300,
+   "recoverable_paise": 20648900,
+   "valid_count": 25
+  },
+  {
+   "family": "deminimis",
+   "count": 10,
+   "paise": 200141,
+   "recoverable_paise": 0,
+   "valid_count": 10
+  },
+  {
+   "family": "duplicate",
+   "count": 11,
+   "paise": 46705900,
+   "recoverable_paise": 33419800,
+   "valid_count": 2
+  },
+  {
+   "family": "goods",
+   "count": 22,
+   "paise": 151089600,
+   "recoverable_paise": 122265800,
+   "valid_count": 11
+  },
+  {
+   "family": "gst",
+   "count": 9,
+   "paise": 21725449,
+   "recoverable_paise": 0,
+   "valid_count": 9
+  },
+  {
+   "family": "scheme",
+   "count": 41,
+   "paise": 135243900,
+   "recoverable_paise": 34083800,
+   "valid_count": 25
+  },
+  {
+   "family": "tds",
+   "count": 125,
+   "paise": 695125558,
+   "recoverable_paise": 206133435,
+   "valid_count": 105
+  },
+  {
+   "family": "unexplained",
+   "count": 16,
+   "paise": 33863800,
+   "recoverable_paise": 33863800,
+   "valid_count": 0
+  }
+ ],
+ "by_code": [
+  {
+   "code": "TDS_RATE_MISMATCH",
+   "label": "Deducted at the wrong rate or under the wrong section",
+   "family": "tds",
+   "chaseable": true,
+   "count": 17,
+   "paise": 344789022,
+   "recoverable_paise": 204772780
+  },
+  {
+   "code": "TDS_194J",
+   "label": "TDS u/s 194J — professional / technical fees",
+   "family": "tds",
+   "chaseable": false,
+   "count": 37,
+   "paise": 232291385,
+   "recoverable_paise": 0
+  },
+  {
+   "code": "SCHEME_REBATE",
+   "label": "Trade scheme / quarterly purchase scheme claim",
+   "family": "scheme",
+   "chaseable": true,
+   "count": 41,
+   "paise": 135243900,
+   "recoverable_paise": 34083800
+  },
+  {
+   "code": "QUALITY_REJECTION",
+   "label": "Material rejected on quality grounds",
+   "family": "goods",
+   "chaseable": true,
+   "count": 8,
+   "paise": 78183500,
+   "recoverable_paise": 53019700
+  },
+  {
+   "code": "CREDIT_NOTE_OFFSET",
+   "label": "Netted off an existing credit note",
+   "family": "credit_note",
+   "chaseable": true,
+   "count": 32,
+   "paise": 69350300,
+   "recoverable_paise": 20648900
+  },
+  {
+   "code": "TDS_194H",
+   "label": "TDS u/s 194H — commission or brokerage",
+   "family": "tds",
+   "chaseable": false,
+   "count": 25,
+   "paise": 66765294,
+   "recoverable_paise": 0
+  },
+  {
+   "code": "TDS_194C",
+   "label": "TDS u/s 194C — payments to contractors",
+   "family": "tds",
+   "chaseable": false,
+   "count": 39,
+   "paise": 49446738,
+   "recoverable_paise": 0
+  },
+  {
+   "code": "DEBIT_NOTE_BUYER",
+   "label": "Buyer-raised debit note",
+   "family": "goods",
+   "chaseable": true,
+   "count": 5,
+   "paise": 48708200,
+   "recoverable_paise": 48264100
+  },
+  {
+   "code": "DUPLICATE_CLAIM",
+   "label": "Buyer asserts the invoice was already paid",
+   "family": "duplicate",
+   "chaseable": true,
+   "count": 11,
+   "paise": 46705900,
+   "recoverable_paise": 33419800
+  },
+  {
+   "code": "UNEXPLAINED",
+   "label": "Short paid with no reason given",
+   "family": "unexplained",
+   "chaseable": true,
+   "count": 16,
+   "paise": 33863800,
+   "recoverable_paise": 33863800
+  },
+  {
+   "code": "RATE_DIFFERENCE",
+   "label": "Billed above the contracted rate",
+   "family": "contract",
+   "chaseable": false,
+   "count": 2,
+   "paise": 30317126,
+   "recoverable_paise": 0
+  },
+  {
+   "code": "DAMAGE_SHORTAGE",
+   "label": "Goods damaged or short-delivered",
+   "family": "goods",
+   "chaseable": true,
+   "count": 9,
+   "paise": 24197900,
+   "recoverable_paise": 20982000
+  },
+  {
+   "code": "FREIGHT",
+   "label": "Freight / transport recovered by the buyer",
+   "family": "contract",
+   "chaseable": true,
+   "count": 25,
+   "paise": 23335100,
+   "recoverable_paise": 9488600
+  },
+  {
+   "code": "GST_TDS",
+   "label": "GST TDS 2% — government / PSU buyers",
+   "family": "gst",
+   "chaseable": false,
+   "count": 9,
+   "paise": 21725449,
+   "recoverable_paise": 0
+  },
+  {
+   "code": "UNEARNED_DISCOUNT",
+   "label": "Early-payment discount taken outside the discount window",
+   "family": "contract",
+   "chaseable": true,
+   "count": 15,
+   "paise": 13374882,
+   "recoverable_paise": 13374882
+  },
+  {
+   "code": "TCS_194Q_OVERLAP",
+   "label": "Buyer deducted 194Q where the seller already charged TCS u/s 206C(1H)",
+   "family": "tds",
+   "chaseable": true,
+   "count": 3,
+   "paise": 1360655,
+   "recoverable_paise": 1360655
+  },
+  {
+   "code": "TDS_194Q",
+   "label": "TDS u/s 194Q — purchase of goods above Rs 50L",
+   "family": "tds",
+   "chaseable": false,
+   "count": 4,
+   "paise": 472464,
+   "recoverable_paise": 0
+  },
+  {
+   "code": "BANK_CHARGES",
+   "label": "NEFT/RTGS or intermediary bank charges",
+   "family": "deminimis",
+   "chaseable": false,
+   "count": 9,
+   "paise": 199800,
+   "recoverable_paise": 0
+  },
+  {
+   "code": "ROUNDING",
+   "label": "Sub-Rs 10 rounding difference",
+   "family": "deminimis",
+   "chaseable": false,
+   "count": 1,
+   "paise": 341,
+   "recoverable_paise": 0
+  }
+ ],
+ "by_segment": [
+  {
+   "segment": "enterprise",
+   "count": 85,
+   "paise": 291824564
+  },
+  {
+   "segment": "midmarket",
+   "count": 132,
+   "paise": 724038944
+  },
+  {
+   "segment": "sme",
+   "count": 91,
+   "paise": 204468248
+  }
+ ],
+ "top_buyers": [
+  {
+   "id": "BUY-0007",
+   "name": "Nav Agro Distributors Pvt Ltd",
+   "segment": "midmarket",
+   "behaviour": "average",
+   "count": 10,
+   "paise": 218653847,
+   "recoverable_paise": 75074516
+  },
+  {
+   "id": "BUY-0027",
+   "name": "Chetak Rubber Udyog Pvt Ltd",
+   "segment": "midmarket",
+   "behaviour": "difficult",
+   "count": 7,
+   "paise": 152969276,
+   "recoverable_paise": 50612000
+  },
+  {
+   "id": "BUY-0016",
+   "name": "Krishna Bearings Corporation",
+   "segment": "midmarket",
+   "behaviour": "slow",
+   "count": 9,
+   "paise": 93096820,
+   "recoverable_paise": 58610408
+  },
+  {
+   "id": "BUY-0019",
+   "name": "Anand Bearings Traders",
+   "segment": "sme",
+   "behaviour": "average",
+   "count": 10,
+   "paise": 57334245,
+   "recoverable_paise": 17260828
+  },
+  {
+   "id": "BUY-0039",
+   "name": "Sutlej Packaging Agencies",
+   "segment": "enterprise",
+   "behaviour": "average",
+   "count": 6,
+   "paise": 48239675,
+   "recoverable_paise": 35565700
+  },
+  {
+   "id": "BUY-0022",
+   "name": "Vindhya Electro Trading Co",
+   "segment": "midmarket",
+   "behaviour": "average",
+   "count": 9,
+   "paise": 45145830,
+   "recoverable_paise": 13853800
+  },
+  {
+   "id": "BUY-0023",
+   "name": "Hind Steel Impex",
+   "segment": "enterprise",
+   "behaviour": "prompt",
+   "count": 13,
+   "paise": 42962356,
+   "recoverable_paise": 1876800
+  },
+  {
+   "id": "BUY-0013",
+   "name": "Lakshmi Chem Udyog Pvt Ltd",
+   "segment": "midmarket",
+   "behaviour": "prompt",
+   "count": 7,
+   "paise": 42200377,
+   "recoverable_paise": 33891608
+  },
+  {
+   "id": "BUY-0026",
+   "name": "Sri Cement Agencies",
+   "segment": "enterprise",
+   "behaviour": "average",
+   "count": 7,
+   "paise": 41668248,
+   "recoverable_paise": 2491500
+  },
+  {
+   "id": "BUY-0017",
+   "name": "Sutlej Fasteners Udyog Pvt Ltd",
+   "segment": "enterprise",
+   "behaviour": "difficult",
+   "count": 13,
+   "paise": 39012888,
+   "recoverable_paise": 20734343
+  },
+  {
+   "id": "BUY-0034",
+   "name": "Vikram Paper Corporation",
+   "segment": "sme",
+   "behaviour": "average",
+   "count": 10,
+   "paise": 37128125,
+   "recoverable_paise": 8167470
+  },
+  {
+   "id": "BUY-0030",
+   "name": "Anand Beverages Corporation",
+   "segment": "midmarket",
+   "behaviour": "average",
+   "count": 13,
+   "paise": 34777763,
+   "recoverable_paise": 8295412
+  }
+ ],
+ "histogram": [
+  {
+   "label": "<Rs 500",
+   "count": 20,
+   "paise": 461189
+  },
+  {
+   "label": "Rs 500–2k",
+   "count": 65,
+   "paise": 7991409
+  },
+  {
+   "label": "Rs 2k–10k",
+   "count": 85,
+   "paise": 41712209
+  },
+  {
+   "label": "Rs 10k–50k",
+   "count": 88,
+   "paise": 202532511
+  },
+  {
+   "label": "Rs 50k–2L",
+   "count": 38,
+   "paise": 358094512
+  },
+  {
+   "label": ">Rs 2L",
+   "count": 12,
+   "paise": 609539926
+  }
+ ],
+ "sample_advices": [
+  {
+   "id": "ADV-0043",
+   "format": "email",
+   "received_at": "2026-08-07",
+   "raw_text": "Kindly note payment made as per below breakup.\n\nInvoice INV/2026/0388 | Gross 517234.16 | Less 21916.00 (scheme rebate as per circular) | Net 495318.16\n\nTotal remitted: 495318.16\n\nRegards,\nFinance Dept",
+   "truncated": false
+  },
+  {
+   "id": "ADV-0014",
+   "format": "pdf_text",
+   "received_at": "2026-05-09",
+   "raw_text": "Om Rubber & Sons\nPAYMENT ADVICE\n----------------------------------------------\nInvoiceGrossDeductionNetRemarks\nINV/2026/00771973476.9444359.341929117.60  gst tds deducted\n----------------------------------------------\nTOTAL1929117.60",
+   "truncated": false
+  },
+  {
+   "id": "ADV-0184",
+   "format": "xlsx",
+   "received_at": "2026-08-16",
+   "raw_text": "\tRaj Chem Solutions Pvt Ltd\t\t\nPayment Advice\t\t\t\n\nInvoice No\tGross Amt\tDeduction\tNet Paid\tRemarks\nINV/2026/0113\t266764.07\t12637.00\t254127.07\tmaterial short received; remittance charges\n\t\t\t\t\n\n\t\tTotal\t254127.07\t",
+   "truncated": false
+  }
+ ]
+}
